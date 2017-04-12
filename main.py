@@ -4,12 +4,15 @@ from datetime import  datetime
 
 from sys import argv
 try:
-    BASEDIR = argv[1] # scratch-striped
+    BASEDIR = argv[1] # scratch-striped]
+    maxdays = 28
 except:
-    BASEDIR = ''
+    BASEDIR = '../Dataprocessing/'
+    maxdays = 4
 
 s = datetime.now().strftime('%Y-%m-%d:%H:%M:%S')
-results_csv = csv.writer(open('results/results_%s.csv' % s, 'wt'))
+rfile = open('results/results_%s.csv' % s, 'wt')
+results_csv = csv.writer(rfile)
 
 from cooccur_based_ranker import CooccurRank
 from popular_based_recommender import PopRank
@@ -36,18 +39,19 @@ def writeresults(day, ranker):
         try:
             print('%s %s %s %s %s %s' %
                   (ranker.name,day, key, ranker.evaluation.stats_site[key], ranker.evaluation.total_count_site[key],  ranker.evaluation.stats_site[key]/ranker.evaluation.total_count_site[key]))
-            results_csv.writerow(ranker.name,day, key, ranker.evaluation.stats_site[key],
-                                 ranker.evaluation.total_count_site[key],  ranker.evaluation.stats_site[key]/ranker.evaluation.total_count_site[key])
+            results_csv.writerow([ranker.name,day, key, ranker.evaluation.stats_site[key],
+                                 ranker.evaluation.total_count_site[key],  ranker.evaluation.stats_site[key]/ranker.evaluation.total_count_site[key]])
         except ZeroDivisionError:
             print('devision by zero')
             results_csv.writerow([ranker.name, day, key, ranker.evaluation.stats_site[key], ranker.evaluation.total_count_site[key], 0])
 
 for ranker in rankers:
-    ranker.run_test()
-    for day in range (1,4):
+    # ranker.run_test()
+    for day in range (1,maxdays):
         ranker.init_new_day()
         ranker.run_day(day=day)
         writeresults(day, ranker)
+        rfile.flush()
 
 
 
