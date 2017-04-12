@@ -42,7 +42,7 @@ def writeresults(day, ranker):
 
 for ranker in rankers:
     ranker.run_test()
-    for day in range (1,4):
+    for day in range (1,28):
         ranker.init_new_day()
         ranker.run_day(day=day)
         writeresults(day, ranker)
