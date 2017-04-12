@@ -34,11 +34,13 @@ def writeresults(day, ranker):
     print(ranker.evaluation.total_count_site)
     for key in ranker.evaluation.stats_site.keys():
         try:
-            print('%s %s %s %s' %(ranker.name,day, key, ranker.evaluation.stats_site[key]/ranker.evaluation.total_count_site[key]))
-            results_csv.writerow([ranker.name, day, key, ranker.evaluation.stats_site[key] / ranker.evaluation.total_count_site[key]])
+            print('%s %s %s %s %s %s' %
+                  (ranker.name,day, key, ranker.evaluation.stats_site[key], ranker.evaluation.total_count_site[key],  ranker.evaluation.stats_site[key]/ranker.evaluation.total_count_site[key]))
+            results_csv.writerow(ranker.name,day, key, ranker.evaluation.stats_site[key],
+                                 ranker.evaluation.total_count_site[key],  ranker.evaluation.stats_site[key]/ranker.evaluation.total_count_site[key])
         except ZeroDivisionError:
             print('devision by zero')
-            results_csv.writerow([ranker.name, day, key, 0])
+            results_csv.writerow([ranker.name, day, key, ranker.evaluation.stats_site[key], ranker.evaluation.total_count_site[key], 0])
 
 for ranker in rankers:
     ranker.run_test()
