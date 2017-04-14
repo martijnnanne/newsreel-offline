@@ -8,7 +8,7 @@ try:
     maxdays = 28
 except:
     BASEDIR = '../Dataprocessing/'
-    maxdays = 4
+    maxdays = 10
 
 s = datetime.now().strftime('%Y-%m-%d:%H:%M:%S')
 rfile = open('results/results_%s.csv' % s, 'wt')
@@ -26,7 +26,7 @@ contentrank = ContentRank(BASEDIR)
 
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [contentrank,coocrank, poprank, seqrank]
+rankers = [ poprank]
 
 results = {'coocrank': {'day': {}}, 'poprank': {}, 'seqrank':{}, 'contentrank': {}}
 
@@ -47,7 +47,7 @@ def writeresults(day, ranker):
 
 for ranker in rankers:
     # ranker.run_test()
-    for day in range (1,maxdays):
+    for day in range (8,maxdays):
         ranker.init_new_day()
         ranker.run_day(day=day)
         writeresults(day, ranker)
