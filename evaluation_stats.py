@@ -12,11 +12,18 @@ class Stats():
         self.total_day = {}
         self.currentday = 0
 
+        self.total_correct_all = 0
+        self.total_count_all  = 0
+
 
     def add_correct_site(self, publisher_id):
         self.stats_site[publisher_id] += 1
         self.total_count_site[publisher_id] +=1
 
+        self.total_correct_all += 1
+        self.total_count_all += 1
+
     def add_incorrect_site(self, publisher_id):
         self.total_count_site[publisher_id] += 1
+        self.total_count_all += 1
 
