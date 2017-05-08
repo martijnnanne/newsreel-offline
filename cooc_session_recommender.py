@@ -12,7 +12,7 @@ import re
 # if item does not exist, add to the dictionary
 #
 from collections import Counter
-from generic_recommender import  GenericRecommender
+from generic_recommender import  GenericRecommender, Stats
 
 class CoocSessionRank(GenericRecommender):
     def __init__(self, BASEDIR):
@@ -33,6 +33,11 @@ class CoocSessionRank(GenericRecommender):
         self.correct = 0
         self.total_events = 0
         self.nrrows =0
+
+    def init_new_day(self):
+        self.evaluation = Stats()
+        self.user_item_dict = {}
+        self.cooccur_dict = {}
 
     def store(self, item_id, user_id ):
         if not user_id in self.user_item_dict.keys():
