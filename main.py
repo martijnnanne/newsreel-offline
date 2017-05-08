@@ -26,7 +26,7 @@ contentrank = ContentRank(BASEDIR)
 
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [ poprank]
+rankers = [seqrank]
 
 results = {'coocrank': {'day': {}}, 'poprank': {}, 'seqrank':{}, 'contentrank': {}}
 
@@ -47,7 +47,7 @@ def writeresults(day, ranker):
 
 for ranker in rankers:
     # ranker.run_test()
-    for day in range (8,maxdays):
+    for day in range (1,maxdays):
         ranker.init_new_day()
         ranker.run_day(day=day)
         writeresults(day, ranker)
