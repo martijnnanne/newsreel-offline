@@ -34,6 +34,7 @@ mpcsessionrank = SessionSeqRank(BASEDIR)
 # rankers = [coocrank, poprank, seqrank, contentrank]
 rankers = [ mpcsessionrank,coocsessionrank,contentrank,seqrank,poprank,coocrank]
 
+
 results = {'coocrank': {'day': {}}, 'poprank': {}, 'seqrank':{}, 'contentrank': {}}
 
 
