@@ -1,23 +1,13 @@
-
-import gzip
-import csv
-
-import time
-
 from mapping import Mapping
-from collections import OrderedDict
+from collections import OrderedDict, Counter
 import re
 from generic_recommender import GenericRecommender
-# keep dictionary per domain of items:views
-# if item does not exist, add to the dictionary
-#
 
-
-class SeqRank(GenericRecommender):
+class SessionSeqRank(GenericRecommender):
 
     def __init__(self, BASEDIR):
         super().__init__(BASEDIR)
-        self.name = 'seqrank'
+        self.name = 'session_seqrank'
 
         mapper = Mapping()
         self.rec_mapping = mapper.get_header_rec()
@@ -27,7 +17,7 @@ class SeqRank(GenericRecommender):
         self.recs_idx = self.event_mapping.index('recs')
         self.user_id_idx = self.event_mapping.index('USER_COOKIE')
 
-        self.user_last_item_dict = {}
+        self.user_item_dict = {}
         self.item_sequence_dict = {}
 
         self.correct = 0
@@ -46,28 +36,30 @@ class SeqRank(GenericRecommender):
             print(nextrec)
             return
 
-        if(user_id == '0'):
+        if user_id == '0':
             return
 
-        if(not user_id in self.user_last_item_dict):
-            self.user_last_item_dict[user_id] = item_id
+        if(not user_id in self.user_item_dict):
+            self.user_item_dict[user_id] = [item_id]
         else:
-            last_item = self.user_last_item_dict[user_id]
+            last_item = self.user_item_dict[user_id][-1]
             if last_item not in self.item_sequence_dict:
                 self.item_sequence_dict[last_item] = {}
             if item_id in self.item_sequence_dict[last_item]:
                 self.item_sequence_dict[last_item][item_id] += 1
             else:
                 self.item_sequence_dict[last_item][item_id] = 1
-            self.user_last_item_dict[user_id] = item_id
+            self.user_item_dict[user_id].append(item_id)
 
     def store_event(self, nextevent):
         last_item = nextevent[self.item_id_idx]
         user_id = nextevent[self.user_id_idx]
         rec_clicked = self.true_rec(nextevent)
 
-        if user_id not in self.user_last_item_dict and user_id is not '0':
-            self.user_last_item_dict[user_id] = rec_clicked
+        if user_id not in self.user_item_dict and user_id is not '0':
+            self.user_item_dict[user_id] = [rec_clicked]
+        elif user_id in self.user_item_dict and user_id is not '0':
+            self.user_item_dict[user_id].append(rec_clicked)
         if last_item not in self.item_sequence_dict:
             self.item_sequence_dict[last_item] = {}
         if rec_clicked in self.item_sequence_dict[last_item]:
@@ -77,13 +69,23 @@ class SeqRank(GenericRecommender):
 
     def get_recommendation(self, nextevent):
         item_id = nextevent[self.item_id_idx]
+        user_id = nextevent[self.user_id_idx]
         sorted_item_list = []
         try:
-            mpc_dict = self.item_sequence_dict[item_id]
-            ordered = OrderedDict(sorted(mpc_dict.items(),key=lambda t: t[1], reverse=True))
+            user_items = self.user_item_dict[user_id]
+            count_dict = Counter(self.item_sequence_dict[item_id])
+            for item in reversed(user_items):
+                item_dict = Counter(self.item_sequence_dict[item])
+                count_dict = count_dict + item_dict
+            ordered = OrderedDict(sorted(count_dict.items(),key=lambda t: t[1], reverse=True))
             sorted_item_list = list(ordered.keys())
-        except:
-            sorted_item_list = []
+        except KeyError:
+            try:
+                mpc_dict = self.item_sequence_dict[item_id]
+                ordered = OrderedDict(sorted(mpc_dict.items(),key=lambda t: t[1], reverse=True))
+                sorted_item_list = list(ordered.keys())
+            except:
+                sorted_item_list = []
 
         if 0 in sorted_item_list:
             sorted_item_list.remove(0)
@@ -107,4 +109,3 @@ class SeqRank(GenericRecommender):
             if (self.nrrows % 1000000 == 0):
                 print(self.nrrows)
                 print(self.evaluation.total_correct_all / self.evaluation.total_count_all)
-

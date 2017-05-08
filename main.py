@@ -6,9 +6,11 @@ from sys import argv
 try:
     BASEDIR = argv[1] # scratch-striped]
     maxdays = 28
+    mindays = 1
 except:
     BASEDIR = '../Dataprocessing/'
     maxdays = 10
+    mindays = 1
 
 s = datetime.now().strftime('%Y-%m-%d:%H:%M:%S')
 rfile = open('results/results_%s.csv' % s, 'wt')
@@ -18,15 +20,19 @@ from cooccur_based_ranker import CooccurRank
 from popular_based_recommender import PopRank
 from sequence_based_recommender import SeqRank
 from content_based_recommender import ContentRank
+from cooc_session_recommender import CoocSessionRank
+from mpc_session_recommender import SessionSeqRank
 
 coocrank = CooccurRank(BASEDIR)
 poprank = PopRank(BASEDIR)
 seqrank = SeqRank(BASEDIR)
 contentrank = ContentRank(BASEDIR)
+coocsessionrank = CoocSessionRank(BASEDIR)
+mpcsessionrank = SessionSeqRank(BASEDIR)
 
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [ poprank]
+rankers = [ mpcsessionrank,coocsessionrank,contentrank,seqrank,poprank,coocrank]
 
 results = {'coocrank': {'day': {}}, 'poprank': {}, 'seqrank':{}, 'contentrank': {}}
 
@@ -47,7 +53,7 @@ def writeresults(day, ranker):
 
 for ranker in rankers:
     # ranker.run_test()
-    for day in range (8,maxdays):
+    for day in range (mindays,maxdays):
         ranker.init_new_day()
         ranker.run_day(day=day)
         writeresults(day, ranker)

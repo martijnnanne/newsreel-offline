@@ -95,6 +95,15 @@ class Processor():
         except:
             pass
 
+    def store_limit(self, json_split, arr):
+        try:
+            for key in self.mapper.limit:
+                try:
+                    arr.append(json_split[key])
+                except:
+                    arr.append('')
+        except:
+            pass
 
 
     def parse(self, infile, outfile,event_csv, item_csv, nrrows):
@@ -105,6 +114,7 @@ class Processor():
         item_csv.writerow(mapper.item_update_keys)
         event_csv.writerow(mapper.simple_header + mapper.cluster_header + mapper.list_header + mapper.recs + mapper.timestamp + mapper.type)
         i = 0
+        event_mapping = mapper.get_header_event()
         for line in file:
             splitline = line.split('\t')
             command = splitline[0]
@@ -114,6 +124,7 @@ class Processor():
                 self.store_simple_context(json_split, arr)
                 self.store_cluster_context(json_split, arr)
                 self.store_list_context(json_split, arr)
+                self.store_limit(json_split, arr)
                 rec_csv.writerow(arr)
             elif(command == 'event_notification'):
                 arr = []
@@ -123,6 +134,7 @@ class Processor():
                 self.store_recs(json_split,arr)
                 self.store_timestamp_event(json_split, arr)
                 self.store_type_event(json_split, arr)
+                print(arr[event_mapping.index('USER_COOKIE')])
                 event_csv.writerow(arr)
             elif(command == 'item_update'):
                 arr = []

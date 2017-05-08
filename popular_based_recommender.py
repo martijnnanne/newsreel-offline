@@ -83,7 +83,6 @@ class PopRank(GenericRecommender):
             return []
         ordered = OrderedDict(sorted(publisher_dict.items(),key=lambda t: t[1], reverse=True))
         sorted_item_list = list(ordered.keys())
-        # print(len(sorted_item_list))
         # sorted_item_list = []
         if 0 in sorted_item_list:
             sorted_item_list.remove(0)
@@ -111,8 +110,11 @@ class PopRank(GenericRecommender):
                     self.time_hour = nexttime
 
             self.nrrows += 1
-            if (self.nrrows % 100000 == 0):
+            if (self.nrrows % 1000000 == 0):
                 print(self.nrrows)
+                print(self.evaluation.total_correct_all)
+                print(self.evaluation.total_count_all)
+                print(self.evaluation.total_correct_all / self.evaluation.total_count_all)
 
 
 

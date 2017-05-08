@@ -14,10 +14,10 @@ import re
 from collections import Counter
 from generic_recommender import  GenericRecommender
 
-class CooccurRank(GenericRecommender):
+class CoocSessionRank(GenericRecommender):
     def __init__(self, BASEDIR):
         super().__init__(BASEDIR)
-        self.name = 'coocrank'
+        self.name = 'session_coocrank'
 
         mapper = Mapping()
         self.rec_mapping = mapper.get_header_rec()
@@ -37,7 +37,7 @@ class CooccurRank(GenericRecommender):
     def store(self, item_id, user_id ):
         if not user_id in self.user_item_dict.keys():
             self.user_item_dict[user_id] = []
-        if item_id == 0 or item_id =='0' or user_id == '0' or user_id == 0:
+        if item_id =='0' or user_id == '0':
             return
 
         if item_id not in self.cooccur_dict.keys():
@@ -89,21 +89,31 @@ class CooccurRank(GenericRecommender):
                 self.cooccur_dict[rec_clicked][item_id] += 1
             else:
                 self.cooccur_dict[rec_clicked][item_id] = 1
+
+
     def get_recommendation(self, nextevent):
         item_id = nextevent[self.item_id_idx]
         user_id = nextevent[self.user_id_idx]
         sorted_item_list = []
         try:
-            item_dict = self.cooccur_dict[item_id]
-            ordered = OrderedDict(sorted(item_dict.items(),key=lambda t: t[1], reverse=True))
+            user_items = self.user_item_dict[user_id]
+            count_dict = Counter(self.cooccur_dict[item_id])
+            weight = .5
+            for item in reversed(user_items):
+                item_dict = Counter(self.cooccur_dict[item])
+                for key in item_dict:
+                    item_dict[key] *= weight
+                count_dict = count_dict + item_dict
+                weight = weight / 2
+            ordered = OrderedDict(sorted(count_dict.items(),key=lambda t: t[1], reverse=True))
             sorted_item_list = list(ordered.keys())
-        except:
+        except KeyError:
             pass
         try:
             user_items = self.user_item_dict[user_id]
             result = [x for x in sorted_item_list if x not in user_items]
             return result[0:6]
-        except:
+        except KeyError:
             return sorted_item_list[0:6]
 
 
@@ -124,3 +134,5 @@ class CooccurRank(GenericRecommender):
             if (self.nrrows % 1000000 == 0):
                 print(self.nrrows)
                 print(self.evaluation.total_correct_all / self.evaluation.total_count_all)
+                # print(self.evaluation.stats_site)
+                # print(self.evaluation.total_count_site)

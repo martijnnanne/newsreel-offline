@@ -30,11 +30,14 @@ class GenericRecommender(metaclass=ABCMeta):
         raise NotImplementedError('users must define run_ranker to use this base class')
 
     def add_score(self, nextevent):
-        publisher = nextevent[self.publisher_id_idx]
-        if self.true_rec(nextevent) in self.get_recommendation(nextevent):
-            self.evaluation.add_correct_site(publisher)
-        else:
-            self.evaluation.add_incorrect_site(publisher)
+        try:
+            publisher = nextevent[self.publisher_id_idx]
+            if self.true_rec(nextevent) in self.get_recommendation(nextevent):
+                self.evaluation.add_correct_site(publisher)
+            else:
+                self.evaluation.add_incorrect_site(publisher)
+        except:
+            print('WTF')
 
     def run_test(self):
         self.bridge_table = open(self.BASEDIR + 'CSV/bridge-tables/test_real_bridge', 'rt')
