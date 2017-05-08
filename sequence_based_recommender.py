@@ -7,7 +7,7 @@ import time
 from mapping import Mapping
 from collections import OrderedDict
 import re
-from generic_recommender import GenericRecommender
+from generic_recommender import GenericRecommender, Stats
 # keep dictionary per domain of items:views
 # if item does not exist, add to the dictionary
 #
@@ -34,7 +34,9 @@ class SeqRank(GenericRecommender):
         self.total_events = 0
         self.nrrows =0
 
-
+    def init_new_day(self):
+        self.evaluation = Stats()
+        self.item_sequence_dict = {}
 
 
     def store_view(self, nextrec):

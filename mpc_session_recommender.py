@@ -1,7 +1,7 @@
 from mapping import Mapping
 from collections import OrderedDict, Counter
 import re
-from generic_recommender import GenericRecommender
+from generic_recommender import GenericRecommender, Stats
 
 class SessionSeqRank(GenericRecommender):
 
@@ -25,7 +25,10 @@ class SessionSeqRank(GenericRecommender):
         self.nrrows =0
 
 
-
+    def init_new_day(self):
+        self.evaluation = Stats()
+        self.user_item_dict = {}
+        self.item_sequence_dict = {}
 
     def store_view(self, nextrec):
         try:
@@ -106,6 +109,6 @@ class SessionSeqRank(GenericRecommender):
                 self.store_event(nextevent)
 
             self.nrrows += 1
-            if (self.nrrows % 1000000 == 0):
+            if (self.nrrows % 100000 == 0):
                 print(self.nrrows)
                 print(self.evaluation.total_correct_all / self.evaluation.total_count_all)
