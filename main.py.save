@@ -32,7 +32,7 @@ mpcsessionrank = SessionSeqRank(BASEDIR)
 
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [ coocsessionrank,contentrank,seqrank,poprank,coocrank]
+rankers = [ mpcsessionrank,coocsessionrank,contentrank,seqrank,poprank,coocrank]
 
 
 results = {'coocrank': {'day': {}}, 'poprank': {}, 'seqrank':{}, 'contentrank': {}}
@@ -58,7 +58,7 @@ for ranker in rankers:
         ranker.init_new_day()
         ranker.run_day(day=day)
         writeresults(day, ranker)
-        rfile.flush()
+       rfile.flush()
 
 
 
