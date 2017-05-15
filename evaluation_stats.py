@@ -15,15 +15,32 @@ class Stats():
         self.total_correct_all = 0
         self.total_count_all  = 0
 
+        self.sites_correct = []
+        self.total_sites = []
 
-    def add_correct_site(self, publisher_id):
+        self.recall_site = {'35774': [], '1677': [], '13554': [], '418': [], '694': [], '3336': [], '2522': [], '596':[]}
+        self.total_recall_site = {'35774': [], '1677': [], '13554': [], '418': [], '694': [], '3336': [], '2522': [], '596':[]}
+
+
+    def add_correct_site(self, publisher_id, true_rec):
         self.stats_site[publisher_id] += 1
         self.total_count_site[publisher_id] +=1
 
         self.total_correct_all += 1
         self.total_count_all += 1
 
-    def add_incorrect_site(self, publisher_id):
+        if true_rec not in self.recall_site[publisher_id]:
+            self.recall_site[publisher_id].append(true_rec)
+            self.sites_correct.append(true_rec)
+            self.total_sites.append(true_rec)
+        if true_rec not in self.total_recall_site[publisher_id]:
+            self.total_recall_site[publisher_id].append(true_rec)
+
+
+    def add_incorrect_site(self, publisher_id, true_rec):
         self.total_count_site[publisher_id] += 1
         self.total_count_all += 1
 
+        if true_rec not in self.total_recall_site[publisher_id]:
+            self.total_recall_site[publisher_id].append(true_rec)
+            self.total_sites.append(true_rec)

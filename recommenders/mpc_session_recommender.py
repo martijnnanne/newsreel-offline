@@ -3,7 +3,6 @@ from collections import OrderedDict, Counter
 from mapping import Mapping
 from recommenders.generic_recommender import GenericRecommender, Stats
 
-
 class SessionSeqRank(GenericRecommender):
 
     def __init__(self, BASEDIR):

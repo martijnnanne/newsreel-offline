@@ -32,10 +32,11 @@ class GenericRecommender(metaclass=ABCMeta):
     def add_score(self, nextevent):
         try:
             publisher = nextevent[self.publisher_id_idx]
-            if self.true_rec(nextevent) in self.get_recommendation(nextevent):
-                self.evaluation.add_correct_site(publisher)
+            true_rec = self.true_rec(nextevent)
+            if true_rec in self.get_recommendation(nextevent):
+                self.evaluation.add_correct_site(publisher,true_rec)
             else:
-                self.evaluation.add_incorrect_site(publisher)
+                self.evaluation.add_incorrect_site(publisher, true_rec)
         except:
             print('WTF')
 
@@ -67,3 +68,8 @@ class GenericRecommender(metaclass=ABCMeta):
         seen_add = seen.add
         user_items = [x for x in user_items if not (x in seen or seen_add(x))]
         return user_items
+
+    def logging(self):
+        print(self.nrrows)
+        print(self.evaluation.total_correct_all / self.evaluation.total_count_all)
+        print(len(self.evaluation.sites_correct)/len(self.evaluation.total_sites))
