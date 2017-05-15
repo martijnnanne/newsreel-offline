@@ -2,26 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7cc59be1-8f6e-443a-a5f1-6d347a6350f7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/domain_1_test1.png" afterPath="$PROJECT_DIR$/results/domain_1_test1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/domain_2_test1.png" afterPath="$PROJECT_DIR$/results/domain_2_test1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/domain_3_test1.png" afterPath="$PROJECT_DIR$/results/domain_3_test1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/domain_4_test1.png" afterPath="$PROJECT_DIR$/results/domain_4_test1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/ranker_1_test1.png" afterPath="$PROJECT_DIR$/results/ranker_1_test1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/ranker_2_test1.png" afterPath="$PROJECT_DIR$/results/ranker_2_test1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/ranker_3_test1.png" afterPath="$PROJECT_DIR$/results/ranker_3_test1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/ranker_4_test1.png" afterPath="$PROJECT_DIR$/results/ranker_4_test1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/ranker_5_test1.png" afterPath="$PROJECT_DIR$/results/ranker_5_test1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/ranker_6_test1.png" afterPath="$PROJECT_DIR$/results/ranker_6_test1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/evaluation_stats.py" afterPath="$PROJECT_DIR$/evaluation_stats.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/recommenders/cooc_session_recommender.py" afterPath="$PROJECT_DIR$/recommenders/cooc_session_recommender.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/recommenders/cooccur_based_ranker.py" afterPath="$PROJECT_DIR$/recommenders/cooccur_based_ranker.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/recommenders/generic_recommender.py" afterPath="$PROJECT_DIR$/recommenders/generic_recommender.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/recommenders/mpc_event_only.py" afterPath="$PROJECT_DIR$/recommenders/mpc_event_only.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/recommenders/mpc_session_recommender.py" afterPath="$PROJECT_DIR$/recommenders/mpc_session_recommender.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/recommenders/popular_based_recommender.py" afterPath="$PROJECT_DIR$/recommenders/popular_based_recommender.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/Fancy_graphs.ipynb" afterPath="$PROJECT_DIR$/results/Fancy_graphs.ipynb" />
     </list>
     <ignored path="newsreel-offline.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,7 +36,7 @@
       <file leaf-file-name="cooccur_based_ranker.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/recommenders/cooccur_based_ranker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="898">
+            <state relative-caret-position="1348">
               <caret line="124" column="30" selection-start-line="124" selection-start-column="30" selection-end-line="124" selection-end-column="30" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
@@ -66,17 +48,17 @@
       <file leaf-file-name="generic_recommender.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/recommenders/generic_recommender.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="53" column="104" selection-start-line="53" selection-start-column="104" selection-end-line="53" selection-end-column="104" />
+            <state relative-caret-position="-4">
+              <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="popular_based_recommender.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="popular_based_recommender.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/recommenders/popular_based_recommender.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1646">
+            <state relative-caret-position="566">
               <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
@@ -85,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="68" column="33" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="33" />
+            <state relative-caret-position="386">
+              <caret line="57" column="34" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
               <folding>
                 <element signature="e#1#11#0" expanded="true" />
               </folding>
@@ -100,7 +82,7 @@
       <file leaf-file-name="mapping.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mapping.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
+            <state relative-caret-position="311">
               <caret line="25" column="77" selection-start-line="25" selection-start-column="77" selection-end-line="25" selection-end-column="77" />
               <folding />
             </state>
@@ -110,8 +92,8 @@
       <file leaf-file-name="mpc_session_recommender.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/recommenders/mpc_session_recommender.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-510">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+            <state relative-caret-position="465">
+              <caret line="109" column="53" selection-start-line="109" selection-start-column="53" selection-end-line="109" selection-end-column="53" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -173,10 +155,10 @@
         <option value="$PROJECT_DIR$/recommenders/cooccur_based_ranker.py" />
         <option value="$PROJECT_DIR$/recommenders/generic_recommender.py" />
         <option value="$PROJECT_DIR$/recommenders/mpc_event_only.py" />
-        <option value="$PROJECT_DIR$/recommenders/mpc_session_recommender.py" />
         <option value="$PROJECT_DIR$/recommenders/popular_based_recommender.py" />
         <option value="$PROJECT_DIR$/evaluation_stats.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/recommenders/mpc_session_recommender.py" />
       </list>
     </option>
   </component>
@@ -465,7 +447,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18997912" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18997912" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -818,48 +800,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/recommenders/mpc_session_recommender.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-510">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state relative-caret-position="386">
+          <caret line="57" column="34" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
           <folding>
-            <element signature="e#0#44#0" expanded="true" />
+            <element signature="e#1#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mapping.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
+        <state relative-caret-position="311">
           <caret line="25" column="77" selection-start-line="25" selection-start-column="77" selection-end-line="25" selection-end-column="77" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/recommenders/popular_based_recommender.py">
+    <entry file="file://$PROJECT_DIR$/recommenders/mpc_session_recommender.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1646">
-          <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+        <state relative-caret-position="465">
+          <caret line="109" column="53" selection-start-line="109" selection-start-column="53" selection-end-line="109" selection-end-column="53" />
           <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/recommenders/generic_recommender.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="53" column="104" selection-start-line="53" selection-start-column="104" selection-end-line="53" selection-end-column="104" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/recommenders/cooccur_based_ranker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="898">
-          <caret line="124" column="30" selection-start-line="124" selection-start-column="30" selection-end-line="124" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#0#44#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -872,12 +836,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/recommenders/cooccur_based_ranker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="68" column="33" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="33" />
+        <state relative-caret-position="1348">
+          <caret line="124" column="30" selection-start-line="124" selection-start-column="30" selection-end-line="124" selection-end-column="30" />
           <folding>
-            <element signature="e#1#11#0" expanded="true" />
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/recommenders/generic_recommender.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4">
+          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/recommenders/popular_based_recommender.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
