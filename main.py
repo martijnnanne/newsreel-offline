@@ -37,7 +37,7 @@ mpceventsessionrank = MPCEventSession(BASEDIR)
 mpcevent = MPCEvent(BASEDIR)
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [ mpcsessionrank, mpceventsessionrank, mpcevent,coocsessionrank,contentrank,seqrank,poprank,coocrank]
+rankers = [poprank, coocrank]
 
 
 results = {'coocrank': {'day': {}}, 'poprank': {}, 'seqrank':{}, 'contentrank': {}}

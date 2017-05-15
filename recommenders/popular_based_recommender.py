@@ -60,9 +60,9 @@ class PopRank(GenericRecommender):
         except:
             return
 
-        if(not user_id in self.user_item_dict):
+        if(not user_id in self.user_item_dict and user_id != '0'):
             self.user_item_dict[user_id] = [item_id]
-        else:
+        elif user_id != '0':
             self.user_item_dict[user_id].append(item_id)
 
         if(not publisher in self.popdict):
@@ -77,7 +77,8 @@ class PopRank(GenericRecommender):
                 self.popdict[publisher][rec] = 1
             else:
                 self.popdict[publisher][rec] += 1
-            self.user_item_dict[user_id].append(rec)
+            if user_id != '0':
+                self.user_item_dict[user_id].append(rec)
 
 
     def get_recommendation(self, nextevent):
