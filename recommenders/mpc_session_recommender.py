@@ -3,7 +3,6 @@ from collections import OrderedDict, Counter
 from mapping import Mapping
 from recommenders.generic_recommender import GenericRecommender, Stats
 
-
 class SessionSeqRank(GenericRecommender):
 
     def __init__(self, BASEDIR):
@@ -102,17 +101,6 @@ class SessionSeqRank(GenericRecommender):
                 sorted_item_list = list(ordered.keys())
             except:
                 sorted_item_list = []
-
-        if 0 in sorted_item_list:
-            sorted_item_list.remove(0)
-        if item_id in sorted_item_list:
-            sorted_item_list.remove(item_id)
-        try:
-            user_items = self.user_item_dict[user_id]
-            result = [x for x in sorted_item_list if x not in user_items]
-            return result[0:6]
-        except:
-            return sorted_item_list[0:6]
 
         if 0 in sorted_item_list:
             sorted_item_list.remove(0)

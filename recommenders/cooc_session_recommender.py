@@ -20,6 +20,7 @@ class CoocSessionRank(GenericRecommender):
 
         self.user_item_dict = {}
         self.cooccur_dict = {}
+        self.user_item_dict = {}
 
         self.correct = 0
         self.total_events = 0

@@ -4,6 +4,7 @@ from evaluation_stats import Stats
 from mapping import Mapping
 from recommenders.generic_recommender import GenericRecommender
 
+from datetime import datetime
 
 # keep dictionary per domain of items:views
 # if item does not exist, add to the dictionary
@@ -91,7 +92,7 @@ class PopRank(GenericRecommender):
             return []
         ordered = OrderedDict(sorted(publisher_dict.items(),key=lambda t: t[1], reverse=True))
         sorted_item_list = list(ordered.keys())
-        # sorted_item_list = []
+
         if 0 in sorted_item_list:
             sorted_item_list.remove(0)
         if item_id in sorted_item_list:
@@ -116,7 +117,8 @@ class PopRank(GenericRecommender):
                 nextevent = self.event_csv.readline().split('\t')
                 self.add_score(nextevent)
                 self.store_view(nextevent, self.true_rec(nextevent))
-                nexttime = int(nextevent[self.time_idx])
+                nexttime = int(nextevent[-2])
+                nexttime = datetime.fromtimestamp(int(nexttime)/1000).hour
                 if self.time_hour is not nexttime:
                     self.flush_popdict()
                     self.time_hour = nexttime
