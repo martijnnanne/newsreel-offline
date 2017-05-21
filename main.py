@@ -8,10 +8,12 @@ from recommenders.mpc_event_only import MPCEvent
 
 try:
     BASEDIR = argv[1] # scratch-striped]
+    # session_only = argv[2] # wether or not to only recommend session > 1
     maxdays = 28
     mindays = 1
 except:
     BASEDIR = '../Dataprocessing/CSV2/'
+    session_only = True
     maxdays = 10
     mindays = 1
 
@@ -38,7 +40,8 @@ mpcevent = MPCEvent(BASEDIR)
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
 
-rankers = [ mpcsessionrank]
+
+rankers = [mpcevent, mpceventsessionrank,coocrank, poprank,coocsessionrank,seqrank,contentrank,poprank]
 
 
 

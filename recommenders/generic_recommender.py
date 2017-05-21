@@ -6,17 +6,46 @@ import abc
 
 import gzip
 
+from mapping import Mapping
+
+
 class GenericRecommender(metaclass=ABCMeta):
-    def __init__(self, BASEDIR):
+    def __init__(self, BASEDIR, session_only = True):
         self.BASEDIR = BASEDIR
+        self.session_only = session_only
         self.evaluation = Stats()
+        mapper = Mapping()
+        self.rec_mapping = mapper.get_header_rec()
+        self.event_mapping = mapper.get_header_event()
+        self.item_id_idx = self.rec_mapping.index('ITEM_SOURCE')
+        self.publisher_id_idx = self.rec_mapping.index('PUBLISHER')
+        self.recs_idx = self.event_mapping.index('recs')
+        self.limit_idx = self.rec_mapping.index('limit')
+        self.time_idx = self.rec_mapping.index('TIME_HOUR')
+        self.user_id_idx = self.event_mapping.index('USER_COOKIE')
+        self.session_length = {}
 
     def init_new_day(self):
         self.evaluation = Stats()
+        self.session_length = {}
+
+
 
     def true_rec(self, nextevent):
         true_rec_json = nextevent[self.recs_idx]
         return re.search(r"\[([A-Za-z0-9_]+)\]", true_rec_json).group(1)
+
+    def add_session(self, nextrec):
+        try:
+            item_id = nextrec[self.item_id_idx]
+            user_id = nextrec[self.user_id_idx]
+        except:
+            return
+        if(not user_id in self.session_length and user_id != '0'):
+            self.session_length[user_id] = [item_id]
+        elif user_id != '0':
+            self.session_length[user_id].append(item_id)
+
 
 
     @abc.abstractmethod
@@ -30,15 +59,31 @@ class GenericRecommender(metaclass=ABCMeta):
         raise NotImplementedError('users must define run_ranker to use this base class')
 
     def add_score(self, nextevent):
-        try:
-            publisher = nextevent[self.publisher_id_idx]
-            true_rec = self.true_rec(nextevent)
-            if true_rec in self.get_recommendation(nextevent):
-                self.evaluation.add_correct_site(publisher,true_rec)
-            else:
-                self.evaluation.add_incorrect_site(publisher, true_rec)
-        except:
-            print('WTF')
+        if self.session_only:
+            user_id = nextevent[self.user_id_idx]
+            try:
+                if len(self.make_unique(self.session_length[user_id])) > 1:
+                    try:
+                        publisher = nextevent[self.publisher_id_idx]
+                        true_rec = self.true_rec(nextevent)
+                        if true_rec in self.get_recommendation(nextevent):
+                            self.evaluation.add_correct_site(publisher, true_rec)
+                        else:
+                            self.evaluation.add_incorrect_site(publisher, true_rec)
+                    except:
+                        print('WTF')
+            except KeyError:
+                pass
+        else:
+            try:
+                publisher = nextevent[self.publisher_id_idx]
+                true_rec = self.true_rec(nextevent)
+                if true_rec in self.get_recommendation(nextevent):
+                    self.evaluation.add_correct_site(publisher,true_rec)
+                else:
+                    self.evaluation.add_incorrect_site(publisher, true_rec)
+            except:
+                print('WTF')
 
     def run_test(self):
         self.bridge_table = open(self.BASEDIR + 'bridge-tables/test_real_bridge', 'rt')
@@ -73,3 +118,4 @@ class GenericRecommender(metaclass=ABCMeta):
         print(self.nrrows)
         print(self.evaluation.total_correct_all / self.evaluation.total_count_all)
         print(len(self.evaluation.sites_correct)/len(self.evaluation.total_sites))
+

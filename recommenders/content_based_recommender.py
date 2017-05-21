@@ -66,6 +66,9 @@ class ContentRank(GenericRecommender):
     def run_ranker(self):
         for line in self.bridge_table:
             command = line.split('\t')[0]
+            if(command == 'rec'):
+                nextrec = self.rec_csv.readline().split('\t')
+                self.add_session(nextrec)
             if(command == 'event'):
                 self.total_events += 1
                 nextevent = self.event_csv.readline().split('\t')
