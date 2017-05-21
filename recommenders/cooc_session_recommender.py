@@ -30,12 +30,14 @@ class CoocSessionRank(GenericRecommender):
         self.evaluation = Stats()
         self.user_item_dict = {}
         self.cooccur_dict = {}
+        self.session_length = {}
 
     def store(self, item_id, user_id ):
         if not user_id in self.user_item_dict.keys():
             self.user_item_dict[user_id] = []
         if item_id =='0' or user_id == '0':
             return
+
 
         if item_id not in self.cooccur_dict.keys():
             self.cooccur_dict[item_id] = {}
@@ -126,6 +128,7 @@ class CoocSessionRank(GenericRecommender):
             if(command == 'rec'):
                 nextrec = self.rec_csv.readline().split('\t')
                 self.store_view(nextrec)
+                self.add_session(nextrec)
             if(command == 'event'):
                 self.total_events += 1
                 nextevent = self.event_csv.readline().split('\t')

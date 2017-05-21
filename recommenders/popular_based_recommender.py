@@ -52,6 +52,7 @@ class PopRank(GenericRecommender):
     def init_new_day(self):
         self.popdict = OrderedDict()
         self.evaluation = Stats()
+        self.session_length = {}
 
     def store_view(self, nextrec, rec=None):
         try:
@@ -60,6 +61,12 @@ class PopRank(GenericRecommender):
             user_id = nextrec[self.user_id_idx]
         except:
             return
+
+        # try:
+        #     if item_id in self.user_item_dict[user_id]:
+        #         return
+        # except:
+        #     pass
 
         if(not user_id in self.user_item_dict and user_id != '0'):
             self.user_item_dict[user_id] = [item_id]
@@ -112,6 +119,7 @@ class PopRank(GenericRecommender):
             if(command == 'rec'):
                 nextrec = self.rec_csv.readline().split('\t')
                 self.store_view(nextrec)
+                self.add_session(nextrec)
             if(command == 'event'):
                 self.total_events += 1
                 nextevent = self.event_csv.readline().split('\t')
@@ -125,10 +133,7 @@ class PopRank(GenericRecommender):
 
             self.nrrows += 1
             if (self.nrrows % 100000 == 0):
-                print(self.nrrows)
-                print(self.evaluation.total_correct_all)
-                print(self.evaluation.total_count_all)
-                print(self.evaluation.total_correct_all / self.evaluation.total_count_all)
+                self.logging()
 
 
 

@@ -30,6 +30,7 @@ class SessionSeqRank(GenericRecommender):
         self.evaluation = Stats()
         self.user_item_dict = {}
         self.item_sequence_dict = {}
+        self.session_length = {}
 
     def store_view(self, nextrec):
         try:
@@ -123,6 +124,7 @@ class SessionSeqRank(GenericRecommender):
             if(command == 'rec'):
                 nextrec = self.rec_csv.readline().split('\t')
                 self.store_view(nextrec)
+                self.add_session(nextrec)
             if(command == 'event'):
                 self.total_events += 1
                 nextevent = self.event_csv.readline().split('\t')

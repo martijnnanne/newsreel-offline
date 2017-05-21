@@ -34,6 +34,7 @@ class SeqRank(GenericRecommender):
     def init_new_day(self):
         self.evaluation = Stats()
         self.item_sequence_dict = {}
+        self.session_length = {}
 
 
     def store_view(self, nextrec):
@@ -46,6 +47,11 @@ class SeqRank(GenericRecommender):
 
         if(user_id == '0'):
             return
+        # try:
+        #     if item_id in self.user_item_dict[user_id]:
+        #         return
+        # except:
+        #     pass
 
         if(not user_id in self.user_last_item_dict):
             self.user_last_item_dict[user_id] = item_id
@@ -110,6 +116,7 @@ class SeqRank(GenericRecommender):
             if(command == 'rec'):
                 nextrec = self.rec_csv.readline().split('\t')
                 self.store_view(nextrec)
+                self.add_session(nextrec)
             if(command == 'event'):
                 self.total_events += 1
                 nextevent = self.event_csv.readline().split('\t')

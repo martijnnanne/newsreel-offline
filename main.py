@@ -8,10 +8,12 @@ from recommenders.mpc_event_only import MPCEvent
 
 try:
     BASEDIR = argv[1] # scratch-striped]
+    # session_only = argv[2] # wether or not to only recommend session > 1
     maxdays = 28
     mindays = 1
 except:
     BASEDIR = '../Dataprocessing/CSV2/'
+    session_only = True
     maxdays = 10
     mindays = 1
 
@@ -37,7 +39,7 @@ mpceventsessionrank = MPCEventSession(BASEDIR)
 mpcevent = MPCEvent(BASEDIR)
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [ poprank, mpceventsessionrank, mpcevent,coocsessionrank,contentrank,seqrank,poprank,coocrank]
+rankers = [mpcevent, mpceventsessionrank,coocrank, poprank,coocsessionrank,seqrank,contentrank,poprank]
 
 
 results = {'coocrank': {'day': {}}, 'poprank': {}, 'seqrank':{}, 'contentrank': {}}
@@ -59,7 +61,7 @@ def writeresults(day, ranker):
                                   len(ranker.evaluation.recall_site[key])/len(ranker.evaluation.total_recall_site[key])])
         except ZeroDivisionError:
             print('devision by zero')
-            results_csv.writerow([ranker.name, day, key, ranker.evaluation.stats_site[key],  ranker.evaluation.total_count_site[key], 0])
+            results_csv.writerow([ranker.name, day, key, ranker.evaluation.stats_site[key],  ranker.evaluation.total_count_site[key], 0,0])
 
 for ranker in rankers:
     # ranker.run_test()
