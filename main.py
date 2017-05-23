@@ -5,6 +5,7 @@ from datetime import  datetime
 from sys import argv
 
 from recommenders.mpc_event_only import MPCEvent
+from recommenders.mpc_views import MPCviews
 
 try:
     BASEDIR = argv[1] # scratch-striped]
@@ -37,9 +38,10 @@ coocsessionrank = CoocSessionRank(BASEDIR)
 mpcsessionrank = SessionSeqRank(BASEDIR)
 mpceventsessionrank = MPCEventSession(BASEDIR)
 mpcevent = MPCEvent(BASEDIR)
+mpcviews = MPCviews(BASEDIR)
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [mpcevent, mpceventsessionrank,coocrank, poprank,coocsessionrank,seqrank,contentrank,poprank]
+rankers = [mpcviews, mpcevent]
 
 
 results = {'coocrank': {'day': {}}, 'poprank': {}, 'seqrank':{}, 'contentrank': {}}
@@ -52,7 +54,7 @@ def writeresults(day, ranker):
     for key in ranker.evaluation.stats_site.keys():
         try:
             print('%s %s %s %s %s %s %s %s %s' %
-                  (ranker.name,day, key, ranker.evaluation.stats_site[key], ranker.evaluation.total_count_site[key], ranker.evaluation.recall_site[key], ranker.evaluation.total_recall_site[key],
+                  (ranker.name,day, key, ranker.evaluation.stats_site[key], ranker.evaluation.total_count_site[key], ranker.evaluation.recall_site[key], len(ranker.evaluation.total_recall_site[key]),
                    ranker.evaluation.stats_site[key]/ranker.evaluation.total_count_site[key],
                    len(ranker.evaluation.recall_site[key])/len(ranker.evaluation.total_recall_site[key])))
             results_csv.writerow([ranker.name,day, key, ranker.evaluation.stats_site[key],
