@@ -138,6 +138,6 @@ class CoocSessionRank(GenericRecommender):
             self.nrrows += 1
             if (self.nrrows % 100000 == 0):
                 print(self.nrrows)
-                print(self.evaluation.total_correct_all / self.evaluation.total_count_all)
+                #print(self.evaluation.total_correct_all / self.evaluation.total_count_all)
                 # print(self.evaluation.stats_site)
                 # print(self.evaluation.total_count_site)

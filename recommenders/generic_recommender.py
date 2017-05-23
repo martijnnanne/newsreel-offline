@@ -116,6 +116,8 @@ class GenericRecommender(metaclass=ABCMeta):
 
     def logging(self):
         print(self.nrrows)
-        print(self.evaluation.total_correct_all / self.evaluation.total_count_all)
-        print(len(self.evaluation.sites_correct)/len(self.evaluation.total_sites))
-
+        try:
+            print(self.evaluation.total_correct_all / self.evaluation.total_count_all)
+            print(len(self.evaluation.sites_correct)/len(self.evaluation.total_sites))
+        except:
+            print("devision by zero")

@@ -41,7 +41,7 @@ mpcevent = MPCEvent(BASEDIR)
 # rankers = [coocrank, poprank, seqrank, contentrank]
 
 
-rankers = [mpcevent, mpceventsessionrank,coocrank, poprank,coocsessionrank,seqrank,contentrank,poprank]
+rankers = [mpcevent, mpceventsessionrank,coocrank, poprank,coocsessionrank,seqrank,contentrank,poprank, mpcsessionrank]
 
 
 
