@@ -10,7 +10,7 @@ from mapping import Mapping
 
 
 class GenericRecommender(metaclass=ABCMeta):
-    def __init__(self, BASEDIR, session_only = True):
+    def __init__(self, BASEDIR, session_only = False):
         self.BASEDIR = BASEDIR
         self.session_only = session_only
         self.evaluation = Stats()
@@ -120,4 +120,4 @@ class GenericRecommender(metaclass=ABCMeta):
             print(self.evaluation.total_correct_all / self.evaluation.total_count_all)
             print(len(self.evaluation.sites_correct)/len(self.evaluation.total_sites))
         except:
-            print("devision by zero")
+            print("division by zero")
