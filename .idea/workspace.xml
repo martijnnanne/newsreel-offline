@@ -2,10 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7cc59be1-8f6e-443a-a5f1-6d347a6350f7" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results/results_2017-05-09:14:24:13.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results/results_2017-05-10:12:27:43.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results/results_2017-05-10:12:30:23.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results/results_2017-05-10:12:31:00.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results/results_2017-05-10:12:32:33.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results/results_2017-05-11:11:15:20.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results/results_2017-05-11:11:21:16.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results/results_2017-05-11:11:23:08.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results/results_2017-05-11:11:35:39.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results/results_2017-05-11:11:40:29.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results/results_2017-05-11:11:40:45.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results/results_2017-05-11:11:48:22.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results/results_2017-05-11:12:35:28.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Statistics.ipynb" afterPath="$PROJECT_DIR$/Statistics.ipynb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/recommenders/generic_recommender.py" afterPath="$PROJECT_DIR$/recommenders/generic_recommender.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/Fancy_graphs.ipynb" afterPath="$PROJECT_DIR$/results/Fancy_graphs.ipynb" />
     </list>
     <ignored path="newsreel-offline.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,8 +64,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="43" column="29" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
+            <state relative-caret-position="445">
+              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding>
                 <element signature="e#1#11#0" expanded="true" />
               </folding>
@@ -170,9 +182,9 @@
         <option value="$PROJECT_DIR$/recommenders/mpc_session_recommender.py" />
         <option value="$PROJECT_DIR$/recommenders/popular_based_recommender.py" />
         <option value="$PROJECT_DIR$/recommenders/sequence_based_recommender.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/recommenders/mpc_views.py" />
         <option value="$PROJECT_DIR$/recommenders/generic_recommender.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -880,8 +892,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="43" column="29" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
+        <state relative-caret-position="445">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding>
             <element signature="e#1#11#0" expanded="true" />
           </folding>

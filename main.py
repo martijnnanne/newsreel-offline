@@ -44,6 +44,9 @@ mpcviews = MPCviews(BASEDIR)
 rankers = [mpcviews, mpcevent]
 
 
+
+
+
 results = {'coocrank': {'day': {}}, 'poprank': {}, 'seqrank':{}, 'contentrank': {}}
 
 
