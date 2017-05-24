@@ -1,4 +1,5 @@
-from collections import OrderedDict
+import json
+from collections import OrderedDict, Counter
 
 from mapping import Mapping
 from recommenders.generic_recommender import GenericRecommender, Stats
@@ -9,11 +10,11 @@ from recommenders.generic_recommender import GenericRecommender, Stats
 #
 
 
-class MPCviews(GenericRecommender):
+class KeywordRecommender(GenericRecommender):
 
     def __init__(self, BASEDIR):
         super().__init__(BASEDIR)
-        self.name = 'mpcviews'
+        self.name = 'keyword_rec'
 
         mapper = Mapping()
         self.rec_mapping = mapper.get_header_rec()
@@ -22,10 +23,12 @@ class MPCviews(GenericRecommender):
         self.publisher_id_idx = self.rec_mapping.index('PUBLISHER')
         self.recs_idx = self.event_mapping.index('recs')
         self.user_id_idx = self.event_mapping.index('USER_COOKIE')
+        self.keyword_idx = self.rec_mapping.index('KEYWORD')
 
         self.user_last_item_dict = {}
         self.item_sequence_dict = {}
         self.user_item_dict = {}
+        self.keyword_dict = {}
 
         self.correct = 0
         self.total_events = 0
@@ -35,6 +38,7 @@ class MPCviews(GenericRecommender):
         self.evaluation = Stats()
         self.item_sequence_dict = {}
         self.session_length = {}
+        self.keyword_dict = {}
 
 
     def store_view(self, nextrec):
@@ -42,55 +46,53 @@ class MPCviews(GenericRecommender):
             publisher = nextrec[self.publisher_id_idx]
             item_id = nextrec[self.item_id_idx]
             user_id = nextrec[self.user_id_idx]
+            keywords = nextrec[self.keyword_idx]
+            keywords = eval(keywords)
         except:
             return
 
-        if(user_id == '0'):
-            return
-        # try:
-        #     if item_id in self.user_item_dict[user_id]:
-        #         return
-        # except:
-        #     pass
-
-        if(not user_id in self.user_last_item_dict):
-            self.user_last_item_dict[user_id] = item_id
+        if(not user_id in self.user_item_dict and user_id != '0'):
             self.user_item_dict[user_id] = [item_id]
-        else:
-            last_item = self.user_last_item_dict[user_id]
-            if last_item not in self.item_sequence_dict:
-                self.item_sequence_dict[last_item] = {}
-            if item_id in self.item_sequence_dict[last_item]:
-                self.item_sequence_dict[last_item][item_id] += 1
-            else:
-                self.item_sequence_dict[last_item][item_id] = 1
-            self.user_last_item_dict[user_id] = item_id
+        elif user_id != '0':
             self.user_item_dict[user_id].append(item_id)
+
+        if(not publisher in self.keyword_dict):
+            self.keyword_dict[publisher] = {}
+        for key in keywords:
+            if not key in self.keyword_dict[publisher]:
+                self.keyword_dict[publisher][key] = {}
+            if not item_id in self.keyword_dict[publisher][key]:
+                self.keyword_dict[publisher][key][item_id] = keywords[key]
+
+
+
 
     def store_event(self, nextevent):
         last_item = nextevent[self.item_id_idx]
         user_id = nextevent[self.user_id_idx]
         rec_clicked = self.true_rec(nextevent)
-
-        if user_id not in self.user_last_item_dict and user_id is not '0':
-            self.user_last_item_dict[user_id] = rec_clicked
-            self.user_item_dict[user_id] = [last_item]
-            self.user_item_dict[user_id].append(rec_clicked)
-        elif user_id in self.user_item_dict and user_id is not '0':
-            self.user_last_item_dict[user_id] = rec_clicked
-            self.user_item_dict[user_id].append(last_item)
-            self.user_item_dict[user_id].append(rec_clicked)
+        publisher = nextevent[self.publisher_id_idx]
+        self.store_view(nextevent)
 
     def get_recommendation(self, nextevent):
         item_id = nextevent[self.item_id_idx]
         user_id = nextevent[self.user_id_idx]
+        publisher = nextevent[self.publisher_id_idx]
         sorted_item_list = []
         try:
-            mpc_dict = self.item_sequence_dict[item_id]
-            ordered = OrderedDict(sorted(mpc_dict.items(),key=lambda t: t[1], reverse=True))
-            sorted_item_list = list(ordered.keys())
+            keywords = nextevent[self.keyword_idx]
+            keywords = eval(keywords)
         except:
-            sorted_item_list = []
+            return []
+        sim_items = []
+        for key in keywords:
+            try:
+                item_dict = self.keyword_dict[publisher][key]
+                sim_items = sim_items + list(item_dict.keys())
+            except KeyError:
+                pass
+        ordered = OrderedDict(sorted(Counter(sim_items).items(), key=lambda t: t[1], reverse=True))
+        sorted_item_list = list(ordered.keys())
 
         if 0 in sorted_item_list:
             sorted_item_list.remove(0)
@@ -102,6 +104,7 @@ class MPCviews(GenericRecommender):
             return result[0:6]
         except:
             return sorted_item_list[0:6]
+
 
     def run_ranker(self):
         for line in self.bridge_table:
@@ -120,4 +123,4 @@ class MPCviews(GenericRecommender):
             if (self.nrrows % 100000 == 0):
                 print(self.nrrows)
                 print(self.evaluation.total_correct_all / self.evaluation.total_count_all)
-
+                self.logging()
