@@ -45,10 +45,6 @@ keywordrec = KeywordRecommender(BASEDIR)
 # rankers = [coocrank, poprank, seqrank, contentrank]
 rankers = [keywordrec]
 
-
-
-
-
 results = {'coocrank': {'day': {}}, 'poprank': {}, 'seqrank':{}, 'contentrank': {}}
 
 
