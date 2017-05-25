@@ -47,6 +47,8 @@ hybridrec = HybridRec(BASEDIR)
 # rankers = [coocrank, poprank, seqrank, contentrank]
 rankers = [mpcevent, keywordrec, hybridrec]
 
+
+
 results = {'coocrank': {'day': {}}, 'poprank': {}, 'seqrank':{}, 'contentrank': {}}
 
 
