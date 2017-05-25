@@ -30,6 +30,7 @@ from recommenders.cooc_session_recommender import CoocSessionRank
 from recommenders.mpc_session_recommender import SessionSeqRank
 from recommenders.mpc_session_event_only import MPCEventSession
 from recommenders.keyword_recommender import KeywordRecommender
+from recommenders.hybrid_rec import HybridRec
 
 coocrank = CooccurRank(BASEDIR)
 poprank = PopRank(BASEDIR)
@@ -41,9 +42,10 @@ mpceventsessionrank = MPCEventSession(BASEDIR)
 mpcevent = MPCEvent(BASEDIR)
 mpcviews = MPCviews(BASEDIR)
 keywordrec = KeywordRecommender(BASEDIR)
+hybridrec = HybridRec(BASEDIR)
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [keywordrec]
+rankers = [mpcevent, keywordrec, hybridrec]
 
 results = {'coocrank': {'day': {}}, 'poprank': {}, 'seqrank':{}, 'contentrank': {}}
 

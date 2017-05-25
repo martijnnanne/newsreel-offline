@@ -75,15 +75,15 @@ class GenericRecommender(metaclass=ABCMeta):
             except KeyError:
                 pass
         else:
-            try:
-                publisher = nextevent[self.publisher_id_idx]
-                true_rec = self.true_rec(nextevent)
-                if true_rec in self.get_recommendation(nextevent):
-                    self.evaluation.add_correct_site(publisher,true_rec)
-                else:
-                    self.evaluation.add_incorrect_site(publisher, true_rec)
-            except:
-                print('WTF')
+            # try:
+            publisher = nextevent[self.publisher_id_idx]
+            true_rec = self.true_rec(nextevent)
+            if true_rec in self.get_recommendation(nextevent):
+                self.evaluation.add_correct_site(publisher,true_rec)
+            else:
+                self.evaluation.add_incorrect_site(publisher, true_rec)
+            # except Exception:
+            #     print(Exception)
 
     def run_test(self):
         self.bridge_table = open(self.BASEDIR + 'bridge-tables/test_real_bridge', 'rt')
