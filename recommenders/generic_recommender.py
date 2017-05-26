@@ -10,7 +10,7 @@ from mapping import Mapping
 
 
 class GenericRecommender(metaclass=ABCMeta):
-    def __init__(self, BASEDIR, session_only = False):
+    def __init__(self, BASEDIR, session_only = False, cycle_time=1):
         self.BASEDIR = BASEDIR
         self.session_only = session_only
         self.evaluation = Stats()
@@ -24,6 +24,11 @@ class GenericRecommender(metaclass=ABCMeta):
         self.time_idx = self.rec_mapping.index('TIME_HOUR')
         self.user_id_idx = self.event_mapping.index('USER_COOKIE')
         self.session_length = {}
+
+        self.cycle_time = cycle_time
+        self.times_changed_hour = 0
+        self.time_hour = 0
+
 
     def init_new_day(self):
         self.evaluation = Stats()

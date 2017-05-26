@@ -14,7 +14,7 @@ from datetime import datetime
 class PopRank(GenericRecommender):
     def __init__(self, BASEDIR):
         super().__init__(BASEDIR)
-        self.name = 'poprank'
+        self.name = 'poprank_1h'
 
         mapper = Mapping()
         self.rec_mapping = mapper.get_header_rec()
@@ -32,7 +32,8 @@ class PopRank(GenericRecommender):
         self.correct = 0
         self.total_events = 0
         self.nrrows =0
-        self.time_hour = 0
+
+
 
 
 
@@ -128,8 +129,11 @@ class PopRank(GenericRecommender):
                 nexttime = int(nextevent[-2])
                 nexttime = datetime.fromtimestamp(int(nexttime)/1000).hour
                 if self.time_hour is not nexttime:
-                    self.flush_popdict()
-                    self.time_hour = nexttime
+                    self.times_changed_hour += 1
+                    if self.times_changed_hour % self.cycle_time == 0:
+                        self.popdict = {}
+                        # self.flush_popdict()
+                        self.time_hour = nexttime
 
             self.nrrows += 1
             if (self.nrrows % 100000 == 0):

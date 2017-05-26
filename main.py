@@ -9,6 +9,7 @@ from recommenders.mpc_views import MPCviews
 
 try:
     BASEDIR = argv[1] # scratch-striped]
+    cycle_time = argv[2]
     # session_only = argv[2] # wether or not to only recommend session > 1
     maxdays = 28
     mindays = 1
@@ -17,9 +18,10 @@ except:
     session_only = True
     maxdays = 10
     mindays = 1
+    cycle_time = 8
 
 s = datetime.now().strftime('%Y-%m-%d:%H:%M:%S')
-rfile = open('results/results_%s.csv' % s, 'wt')
+rfile = open('results/cycle_%s_results_%s.csv' % ( cycle_time,s), 'wt')
 results_csv = csv.writer(rfile)
 
 from recommenders.cooccur_based_ranker import CooccurRank
@@ -39,13 +41,13 @@ contentrank = ContentRank(BASEDIR)
 coocsessionrank = CoocSessionRank(BASEDIR)
 mpcsessionrank = SessionSeqRank(BASEDIR)
 mpceventsessionrank = MPCEventSession(BASEDIR)
-mpcevent = MPCEvent(BASEDIR)
+mpcevent = MPCEvent(BASEDIR,cycle_time=cycle_time)
 mpcviews = MPCviews(BASEDIR)
 keywordrec = KeywordRecommender(BASEDIR)
 hybridrec = HybridRec(BASEDIR)
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [mpcevent, keywordrec, hybridrec]
+rankers = [mpcevent]
 
 
 

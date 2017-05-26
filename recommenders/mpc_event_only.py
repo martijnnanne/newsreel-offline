@@ -3,12 +3,13 @@ from collections import OrderedDict, Counter
 from mapping import Mapping
 from recommenders.generic_recommender import GenericRecommender, Stats
 
+from datetime import datetime
 
 class MPCEvent(GenericRecommender):
 
-    def __init__(self, BASEDIR):
-        super().__init__(BASEDIR)
-        self.name = 'mpc_event'
+    def __init__(self, BASEDIR, cycle_time=1):
+        super().__init__(BASEDIR, cycle_time=cycle_time)
+        self.name = 'mpc_event_%s' % cycle_time
 
         mapper = Mapping()
         self.rec_mapping = mapper.get_header_rec()
@@ -101,6 +102,15 @@ class MPCEvent(GenericRecommender):
                 nextevent = self.event_csv.readline().split('\t')
                 self.add_score(nextevent)
                 self.store_event(nextevent)
+                nexttime = int(nextevent[-2])
+                nexttime = datetime.fromtimestamp(int(nexttime) / 1000).hour
+                if self.time_hour is not nexttime:
+                    self.times_changed_hour += 1
+                    if self.times_changed_hour % self.cycle_time == 0:
+                        print(self.times_changed_hour, self.cycle_time)
+                        self.item_sequence_dict = {}
+                        self.user_last_item_dict = {}
+                    self.time_hour = nexttime
 
             self.nrrows += 1
             if (self.nrrows % 100000 == 0):
