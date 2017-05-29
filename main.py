@@ -18,7 +18,7 @@ except:
     session_only = True
     maxdays = 10
     mindays = 1
-    cycle_time = 8
+    cycle_time = 48
 
 s = datetime.now().strftime('%Y-%m-%d:%H:%M:%S')
 rfile = open('results/cycle_%s_results_%s.csv' % ( cycle_time,s), 'wt')
@@ -48,8 +48,20 @@ mpcviews = MPCviews(BASEDIR)
 keywordrec = KeywordRecommender(BASEDIR)
 hybridrec = HybridRec(BASEDIR)
 
+
+popevent_1 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=1)
+popevent_2 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=2)
+popevent_4 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=4)
+popevent_8 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=8)
+popevent_16 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=16)
+popevent_24 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=24)
+popevent_32 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=32)
+
+
+
+
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [poprank, popevent, mpcevent,mpceventsessionrank]
+rankers = [popevent, popevent_1, popevent_2, popevent_4, popevent_8, popevent_16, popevent_24, popevent_32]
 
 
 

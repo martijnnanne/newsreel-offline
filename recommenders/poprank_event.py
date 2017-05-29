@@ -12,9 +12,14 @@ from datetime import datetime
 
 
 class PopRankEvent(GenericRecommender):
-    def __init__(self, BASEDIR):
+    def __init__(self, BASEDIR, flushing=False, flush_cycle=24):
         super().__init__(BASEDIR)
-        self.name = 'poprank_event'
+        self.flushing = flushing
+        self.flush_cycle = flush_cycle
+        if flushing:
+            self.name = 'poprank_event_%s' % flush_cycle
+        else:
+            self.name = 'poprank_event'
 
         mapper = Mapping()
         self.rec_mapping = mapper.get_header_rec()
@@ -51,7 +56,8 @@ class PopRankEvent(GenericRecommender):
 
 
     def init_new_day(self):
-        self.popdict = OrderedDict()
+        if not self.flushing:
+            self.popdict = OrderedDict()
         self.evaluation = Stats()
         self.session_length = {}
 
@@ -125,16 +131,15 @@ class PopRankEvent(GenericRecommender):
                 self.total_events += 1
                 nextevent = self.event_csv.readline().split('\t')
                 self.add_score(nextevent)
+                self.add_timestamp(nextevent)
                 self.store_view(nextevent, self.true_rec(nextevent))
-                # nexttime = int(nextevent[-2])
-                # nexttime = datetime.fromtimestamp(int(nexttime)/1000).hour
-                # if self.time_hour is not nexttime:
-                #     self.times_changed_hour += 1
-                #     if self.times_changed_hour % self.cycle_time == 0:
-                #         self.popdict = {}
-                #         # self.flush_popdict()
-                #         self.time_hour = nexttime
-
+                nexttime = int(nextevent[-2])
+                nexttime = datetime.fromtimestamp(int(nexttime)/1000).hour
+                if self.time_hour is not nexttime and self.flushing:
+                    self.times_changed_hour += 1
+                    if self.times_changed_hour % self.flush_cycle == 0:
+                        self.check_cycle_time(self.popdict)
+                    self.time_hour = nexttime
             self.nrrows += 1
             if (self.nrrows % 100000 == 0):
                 self.logging()

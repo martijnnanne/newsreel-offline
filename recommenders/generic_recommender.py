@@ -1,3 +1,6 @@
+import copy
+from collections import Counter
+from collections import OrderedDict
 
 from evaluation_stats import Stats
 import re
@@ -7,6 +10,7 @@ import abc
 import gzip
 
 from mapping import Mapping
+import numpy as np
 
 
 class GenericRecommender(metaclass=ABCMeta):
@@ -15,6 +19,7 @@ class GenericRecommender(metaclass=ABCMeta):
         self.session_only = session_only
         self.evaluation = Stats()
         mapper = Mapping()
+        self.publishers = mapper.publishers
         self.rec_mapping = mapper.get_header_rec()
         self.event_mapping = mapper.get_header_event()
         self.item_id_idx = self.rec_mapping.index('ITEM_SOURCE')
@@ -28,6 +33,10 @@ class GenericRecommender(metaclass=ABCMeta):
         self.cycle_time = cycle_time
         self.times_changed_hour = 0
         self.time_hour = 0
+
+        self.current_timestamp = 1456613999960
+        self.prev_stats = {35774:{}, 1677:{}, 13554:{}, 418:{}, 694:{}, 3336:{}, 2522:{}}
+        self.timestamps = {}
 
 
     def init_new_day(self):
@@ -50,6 +59,47 @@ class GenericRecommender(metaclass=ABCMeta):
             self.session_length[user_id] = [item_id]
         elif user_id != '0':
             self.session_length[user_id].append(item_id)
+
+    def check_cycle_time(self, stats):
+        for publisher in self.publishers:
+            try:
+                stats_next = Counter(stats[str(publisher)])
+                stats_prev = Counter(self.prev_stats[publisher])
+                currentstats = Counter(stats[str(publisher)])
+            except KeyError:
+                print(publisher)
+                return
+
+            currentstats.subtract(stats_prev)
+            ordered_next = OrderedDict(sorted(stats_next.items(), key=lambda t: t[1], reverse=True))
+            ordered_prev = OrderedDict(sorted(stats_prev.items(), key=lambda t: t[1], reverse=True))
+            ordered_current = OrderedDict(sorted(currentstats.items(), key=lambda t: t[1], reverse=True))
+            intersect_keys = (stats_next & stats_prev).keys()
+            for key in intersect_keys:
+                try:
+                    if list(ordered_next.keys()).index(key)-list(ordered_current.keys()).index(key) < -5:
+                        pass
+                        # del stats[str(publisher)][key]
+                except KeyError:
+                    print('not in list')
+            try:
+                self.prev_stats[publisher] = copy.deepcopy(stats_next)
+            except KeyError:
+                print(publisher)
+                print("something else")
+
+
+
+
+
+    def add_timestamp(self, nextevent):
+        rec_clicked = self.true_rec(nextevent)
+        nexttime = int(nextevent[-2])
+        if rec_clicked not in self.timestamps:
+            self.timestamps[rec_clicked] = nexttime
+        self.current_timestamp = nexttime
+
+
 
 
 
