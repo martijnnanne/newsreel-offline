@@ -11,10 +11,10 @@ from datetime import datetime
 #
 
 
-class PopRank(GenericRecommender):
+class PopRankEvent(GenericRecommender):
     def __init__(self, BASEDIR):
         super().__init__(BASEDIR)
-        self.name = 'poprank'
+        self.name = 'poprank_event'
 
         mapper = Mapping()
         self.rec_mapping = mapper.get_header_rec()
@@ -76,10 +76,10 @@ class PopRank(GenericRecommender):
 
         if(not publisher in self.popdict):
             self.popdict[publisher] = {}
-        if(not item_id in self.popdict[publisher]):
-            self.popdict[publisher][item_id] = 1
-        else:
-            self.popdict[publisher][item_id] += 1
+        # if(not item_id in self.popdict[publisher]):
+        #     self.popdict[publisher][item_id] = 1
+        # else:
+        #     self.popdict[publisher][item_id] += 1
 
         if rec:
             if rec not in self.popdict[publisher]:
@@ -126,14 +126,14 @@ class PopRank(GenericRecommender):
                 nextevent = self.event_csv.readline().split('\t')
                 self.add_score(nextevent)
                 self.store_view(nextevent, self.true_rec(nextevent))
-                nexttime = int(nextevent[-2])
-                nexttime = datetime.fromtimestamp(int(nexttime)/1000).hour
-                if self.time_hour is not nexttime:
-                    self.times_changed_hour += 1
-                    if self.times_changed_hour % self.cycle_time == 0:
-                        self.popdict = {}
-                        # self.flush_popdict()
-                        self.time_hour = nexttime
+                # nexttime = int(nextevent[-2])
+                # nexttime = datetime.fromtimestamp(int(nexttime)/1000).hour
+                # if self.time_hour is not nexttime:
+                #     self.times_changed_hour += 1
+                #     if self.times_changed_hour % self.cycle_time == 0:
+                #         self.popdict = {}
+                #         # self.flush_popdict()
+                #         self.time_hour = nexttime
 
             self.nrrows += 1
             if (self.nrrows % 100000 == 0):

@@ -118,5 +118,6 @@ class MPCEventSession(GenericRecommender):
 
             self.nrrows += 1
             if (self.nrrows % 100000 == 0):
+                self.logging()
                 print(self.nrrows)
                 
