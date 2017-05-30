@@ -78,8 +78,9 @@ class GenericRecommender(metaclass=ABCMeta):
             for key in intersect_keys:
                 try:
                     if list(ordered_next.keys()).index(key)-list(ordered_current.keys()).index(key) < -5:
-                        pass
-                        # del stats[str(publisher)][key]
+                        del stats[str(publisher)][key]
+                    elif list(ordered_next.keys()).index(key) > 100:
+                        del stats[str(publisher)][key]
                 except KeyError:
                     print('not in list')
             try:

@@ -61,7 +61,7 @@ popevent_32 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=32)
 
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [popevent, popevent_1, popevent_2, popevent_4, popevent_8, popevent_16, popevent_24, popevent_32]
+rankers = [popevent_1, popevent_2, popevent_4, popevent_8, popevent_16, popevent_24, popevent_32, popevent]
 
 
 

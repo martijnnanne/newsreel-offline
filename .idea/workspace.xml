@@ -2,37 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7cc59be1-8f6e-443a-a5f1-6d347a6350f7" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/domain_1_test1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/domain_2_test1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/domain_3_test1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/domain_4_test1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/domain_5_test1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/domain_6_test1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/domain_7_test1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/domain_8_test1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/ranker_1_test1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/ranker_2_test1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/ranker_3_test1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/ranker_4_test1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/ranker_5_test1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/ranker_6_test1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/results_2017-05-09:14:24:13.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/results_2017-05-10:12:27:43.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/results_2017-05-10:12:30:23.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/results_2017-05-10:12:31:00.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/results_2017-05-10:12:32:33.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/results_2017-05-11:11:15:20.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/results_2017-05-11:11:21:16.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/results_2017-05-11:11:23:08.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/results_2017-05-11:11:35:39.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/results_2017-05-11:11:40:29.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/results_2017-05-11:11:40:45.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/results_2017-05-11:11:48:22.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/results_2017-05-11:12:35:28.csv" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/recommenders/generic_recommender.py" afterPath="$PROJECT_DIR$/recommenders/generic_recommender.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/recommenders/poprank_event.py" afterPath="$PROJECT_DIR$/recommenders/poprank_event.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/Fancy_graphs.ipynb" afterPath="$PROJECT_DIR$/results/Fancy_graphs.ipynb" />
     </list>
     <ignored path="newsreel-offline.iws" />
@@ -65,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="poprank_event.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="poprank_event.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/recommenders/poprank_event.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-360">
-              <caret line="21" column="39" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
+            <state relative-caret-position="-335">
+              <caret line="46" column="36" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="36" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -92,8 +63,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+            <state relative-caret-position="475">
+              <caret line="63" column="97" selection-start-line="63" selection-start-column="97" selection-end-line="63" selection-end-column="97" />
               <folding>
                 <element signature="e#1#11#0" expanded="true" />
               </folding>
@@ -131,11 +102,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="generic_recommender.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="generic_recommender.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/recommenders/generic_recommender.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="87" column="32" selection-start-line="87" selection-start-column="32" selection-end-line="87" selection-end-column="32" />
+            <state relative-caret-position="700">
+              <caret line="80" column="54" selection-start-line="80" selection-start-column="54" selection-end-line="80" selection-end-column="54" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -207,9 +178,9 @@
         <option value="$PROJECT_DIR$/recommenders/mpc_event_only.py" />
         <option value="$PROJECT_DIR$/recommenders/popular_based_recommender.py" />
         <option value="$PROJECT_DIR$/recommenders/mpc_session_event_only.py" />
-        <option value="$PROJECT_DIR$/recommenders/generic_recommender.py" />
         <option value="$PROJECT_DIR$/recommenders/poprank_event.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/recommenders/generic_recommender.py" />
       </list>
     </option>
   </component>
@@ -862,14 +833,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/recommenders/mpc_views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="102" column="15" selection-start-line="102" selection-start-column="15" selection-end-line="102" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/recommenders/mpc_event_only.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
@@ -880,38 +843,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/recommenders/mpc_session_event_only.py">
+    <entry file="file://$PROJECT_DIR$/recommenders/poprank_event.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1715">
-          <caret line="120" column="30" selection-start-line="120" selection-start-column="30" selection-end-line="120" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+        <state relative-caret-position="-335">
+          <caret line="46" column="36" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="36" />
           <folding>
-            <element signature="e#1#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mapping.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="21" column="108" selection-start-line="21" selection-start-column="108" selection-end-line="21" selection-end-column="108" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/recommenders/generic_recommender.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="87" column="32" selection-start-line="87" selection-start-column="32" selection-end-line="87" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -926,12 +863,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/recommenders/poprank_event.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-360">
-          <caret line="21" column="39" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
+        <state relative-caret-position="475">
+          <caret line="63" column="97" selection-start-line="63" selection-start-column="97" selection-end-line="63" selection-end-column="97" />
           <folding>
-            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#1#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/recommenders/mpc_session_event_only.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1715">
+          <caret line="120" column="30" selection-start-line="120" selection-start-column="30" selection-end-line="120" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/recommenders/mpc_views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="102" column="15" selection-start-line="102" selection-start-column="15" selection-end-line="102" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mapping.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="21" column="108" selection-start-line="21" selection-start-column="108" selection-end-line="21" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/recommenders/generic_recommender.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="80" column="54" selection-start-line="80" selection-start-column="54" selection-end-line="80" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
