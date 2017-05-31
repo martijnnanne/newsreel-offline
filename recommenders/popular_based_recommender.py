@@ -131,7 +131,7 @@ class PopRank(GenericRecommender):
                 if self.time_hour is not nexttime:
                     self.times_changed_hour += 1
                     if self.times_changed_hour % self.cycle_time == 0:
-                        self.popdict = {}
+                        # self.popdict = {}
                         # self.flush_popdict()
                         self.time_hour = nexttime
 

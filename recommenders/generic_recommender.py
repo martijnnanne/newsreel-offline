@@ -38,6 +38,9 @@ class GenericRecommender(metaclass=ABCMeta):
         self.prev_stats = {35774:{}, 1677:{}, 13554:{}, 418:{}, 694:{}, 3336:{}, 2522:{}}
         self.timestamps = {}
 
+        self.click_ranking = {'35774':{}, '1677':{}, '13554':{}, '418':{}, '694':{}, '3336':{}, '2522':{}}
+        self.highest_newcomer = {'35774':'', '1677':'', '13554':'', '418':'', '694':'', '3336':'', '2522':''}
+
 
     def init_new_day(self):
         self.evaluation = Stats()
@@ -75,11 +78,28 @@ class GenericRecommender(metaclass=ABCMeta):
             ordered_prev = OrderedDict(sorted(stats_prev.items(), key=lambda t: t[1], reverse=True))
             ordered_current = OrderedDict(sorted(currentstats.items(), key=lambda t: t[1], reverse=True))
             intersect_keys = (stats_next & stats_prev).keys()
+            ## HIGHEST NEWCOMER ###
+            descect_keys = [x for x in stats_next.keys() if x not in intersect_keys]
+            max_index = 1000000
+            highest_newcomer = ''
+            for key in descect_keys:
+                if list(ordered_next.keys()).index(key) < max_index:
+                    highest_newcomer = key
+                    max_index = list(ordered_next.keys()).index(key)
+            self.highest_newcomer[publisher] = highest_newcomer
+            #####
+
+            ### HIGHEST RISER ###
+            for key in intersect_keys:
+                place_prev = list(ordered_prev.keys()).index(key)
+                place_next = list(ordered_next.keys()).index(key)
+                # print('diff',publisher, key,place_next,  place_prev-place_next)
             for key in intersect_keys:
                 try:
                     if list(ordered_next.keys()).index(key)-list(ordered_current.keys()).index(key) < -5:
-                        del stats[str(publisher)][key]
-                    elif list(ordered_next.keys()).index(key) > 100:
+                        pass
+                        # del stats[str(publisher)][key]
+                    elif list(ordered_next.keys()).index(key) > 250:
                         del stats[str(publisher)][key]
                 except KeyError:
                     print('not in list')
@@ -90,7 +110,24 @@ class GenericRecommender(metaclass=ABCMeta):
                 print("something else")
 
 
+    def add_click_ranking(self, nextevent):
+        try:
+            publisher = nextevent[self.publisher_id_idx]
+            item_id = self.true_rec(nextevent)
+        except KeyError:
+            print('KEYERROR')
+            return
+        if item_id in self.click_ranking[publisher]:
+            self.click_ranking[publisher][item_id] += 1
+        else:
+            self.click_ranking[publisher][item_id] = 1
 
+    def get_ordered_click_list(self, publisher):
+        click_list = self.click_ranking[publisher]
+        return list(OrderedDict(sorted(click_list.items(), key=lambda t: t[1], reverse=True)).keys())
+
+    def get_amount_clicked(self,publisher, item_id):
+        return self.click_ranking[publisher][item_id]
 
 
     def add_timestamp(self, nextevent):
@@ -99,9 +136,6 @@ class GenericRecommender(metaclass=ABCMeta):
         if rec_clicked not in self.timestamps:
             self.timestamps[rec_clicked] = nexttime
         self.current_timestamp = nexttime
-
-
-
 
 
     @abc.abstractmethod
@@ -115,6 +149,7 @@ class GenericRecommender(metaclass=ABCMeta):
         raise NotImplementedError('users must define run_ranker to use this base class')
 
     def add_score(self, nextevent):
+        self.add_click_ranking(nextevent)
         if self.session_only:
             user_id = nextevent[self.user_id_idx]
             try:
@@ -123,7 +158,7 @@ class GenericRecommender(metaclass=ABCMeta):
                         publisher = nextevent[self.publisher_id_idx]
                         true_rec = self.true_rec(nextevent)
                         if true_rec in self.get_recommendation(nextevent):
-                            self.evaluation.add_correct_site(publisher, true_rec)
+                            self.evaluation.add_correct_site(publisher, true_rec, self.get_ordered_click_list(publisher), self.get_amount_clicked(publisher,true_rec))
                         else:
                             self.evaluation.add_incorrect_site(publisher, true_rec)
                     except:
@@ -135,7 +170,7 @@ class GenericRecommender(metaclass=ABCMeta):
             publisher = nextevent[self.publisher_id_idx]
             true_rec = self.true_rec(nextevent)
             if true_rec in self.get_recommendation(nextevent):
-                self.evaluation.add_correct_site(publisher,true_rec)
+                self.evaluation.add_correct_site(publisher,true_rec, self.get_ordered_click_list(publisher), self.get_amount_clicked(publisher,true_rec))
             else:
                 self.evaluation.add_incorrect_site(publisher, true_rec)
             # except Exception:
@@ -173,7 +208,9 @@ class GenericRecommender(metaclass=ABCMeta):
     def logging(self):
         print(self.nrrows)
         try:
-            print(self.evaluation.total_correct_all / self.evaluation.total_count_all)
-            print(len(self.evaluation.sites_correct)/len(self.evaluation.total_sites))
+            print('precision', self.evaluation.total_correct_all / self.evaluation.total_count_all)
+            print('recall', len(self.evaluation.sites_correct)/len(self.evaluation.total_sites))
+            print('cg', self.evaluation.CG())
+            print('avg gain', self.evaluation.avgCG())
         except:
             print("division by zero")

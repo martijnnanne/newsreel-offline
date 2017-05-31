@@ -16,7 +16,7 @@ class HybridRec(GenericRecommender):
 
     def __init__(self, BASEDIR):
         super().__init__(BASEDIR)
-        self.name = 'event_keywords_hybrid'
+        self.name = 'most_popular_topic'
 
         mapper = Mapping()
         self.rec_mapping = mapper.get_header_rec()

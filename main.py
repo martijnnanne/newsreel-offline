@@ -46,7 +46,7 @@ mpceventsessionrank = MPCEventSession(BASEDIR)
 mpcevent = MPCEvent(BASEDIR,cycle_time=cycle_time)
 mpcviews = MPCviews(BASEDIR)
 keywordrec = KeywordRecommender(BASEDIR)
-hybridrec = HybridRec(BASEDIR)
+most_popular_topic_rec = HybridRec(BASEDIR)
 
 
 popevent_1 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=1)
@@ -61,7 +61,7 @@ popevent_32 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=32)
 
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [popevent_1, popevent_2, popevent_4, popevent_8, popevent_16, popevent_24, popevent_32, popevent]
+rankers = [coocrank, poprank, popevent, seqrank, contentrank, coocsessionrank, mpcsessionrank, mpceventsessionrank, mpcevent, mpcviews, keywordrec, most_popular_topic_rec]
 
 
 
