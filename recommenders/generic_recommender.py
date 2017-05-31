@@ -210,7 +210,7 @@ class GenericRecommender(metaclass=ABCMeta):
         try:
             print('precision', self.evaluation.total_correct_all / self.evaluation.total_count_all)
             print('recall', len(self.evaluation.sites_correct)/len(self.evaluation.total_sites))
-            print('cg', self.evaluation.CG())
-            print('avg gain', self.evaluation.avgCG())
+            print('cg', self.evaluation.CG('35774'))
+            print('avg gain', self.evaluation.avgCG('35774'))
         except:
             print("division by zero")

@@ -61,7 +61,7 @@ popevent_32 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=32)
 
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [coocrank, poprank, popevent, seqrank, contentrank, coocsessionrank, mpcsessionrank, mpceventsessionrank, mpcevent, mpcviews, keywordrec, most_popular_topic_rec]
+rankers = [coocrank, popevent, poprank , seqrank, contentrank, coocsessionrank, mpcsessionrank, mpceventsessionrank, mpcevent, mpcviews, keywordrec, most_popular_topic_rec]
 
 
 
@@ -74,17 +74,19 @@ def writeresults(day, ranker):
     print(ranker.evaluation.total_count_site)
     for key in ranker.evaluation.stats_site.keys():
         try:
-            print('%s %s %s %s %s %s %s %s %s' %
+            print('%s %s %s %s %s %s %s %s %s %s %s' %
                   (ranker.name,day, key, ranker.evaluation.stats_site[key], ranker.evaluation.total_count_site[key], ranker.evaluation.recall_site[key], len(ranker.evaluation.total_recall_site[key]),
                    ranker.evaluation.stats_site[key]/ranker.evaluation.total_count_site[key],
-                   len(ranker.evaluation.recall_site[key])/len(ranker.evaluation.total_recall_site[key])))
+                   len(ranker.evaluation.recall_site[key])/len(ranker.evaluation.total_recall_site[key]),
+                   ranker.evaluation.CG(key), ranker.evaluation.avgCG(key)))
             results_csv.writerow([ranker.name,day, key, ranker.evaluation.stats_site[key],
                                   ranker.evaluation.total_count_site[key],
                                   ranker.evaluation.stats_site[key]/ranker.evaluation.total_count_site[key],
-                                  len(ranker.evaluation.recall_site[key])/len(ranker.evaluation.total_recall_site[key])])
+                                  len(ranker.evaluation.recall_site[key])/len(ranker.evaluation.total_recall_site[key]),
+                                  ranker.evaluation.CG(key), ranker.evaluation.avgCG(key)])
         except ZeroDivisionError:
             print('devision by zero')
-            results_csv.writerow([ranker.name, day, key, ranker.evaluation.stats_site[key],  ranker.evaluation.total_count_site[key], 0,0])
+            results_csv.writerow([ranker.name, day, key, ranker.evaluation.stats_site[key],  ranker.evaluation.total_count_site[key], 0,0, 0, 0])
 
 for ranker in rankers:
     # ranker.run_test()

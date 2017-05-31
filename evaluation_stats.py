@@ -21,7 +21,7 @@ class Stats():
         self.recall_site = {'35774': [], '1677': [], '13554': [], '418': [], '694': [], '3336': [], '2522': [], '596':[]}
         self.total_recall_site = {'35774': [], '1677': [], '13554': [], '418': [], '694': [], '3336': [], '2522': [], '596':[]}
 
-        self.relevances = []
+        self.relevances = {'35774': [], '1677': [], '13554': [], '418': [], '694': [], '3336': [], '2522': [], '596':[]}
 
 
     def add_correct_site(self, publisher_id, true_rec, ordered_click_list, times_clicked):
@@ -38,7 +38,7 @@ class Stats():
         if true_rec not in self.total_recall_site[publisher_id]:
             self.total_recall_site[publisher_id].append(true_rec)
         # print(self.get_relevance(true_rec, ordered_click_list, times_clicked))
-        self.relevances.append(self.get_relevance(true_rec, ordered_click_list, times_clicked))
+        self.relevances[publisher_id].append(self.get_relevance(true_rec, ordered_click_list, times_clicked))
 
 
     def add_incorrect_site(self, publisher_id, true_rec):
@@ -49,22 +49,22 @@ class Stats():
             self.total_recall_site[publisher_id].append(true_rec)
             self.total_sites.append(true_rec)
 
-    def CG(self):
+    def CG(self, publisher):
         cg = 0
-        for relevance in self.relevances:
+        for relevance in self.relevances[publisher]:
             cg += relevance
         return cg
 
-    def avgCG(self):
+    def avgCG(self,publisher):
         cg = 0
         i = 0
-        for relevance in self.relevances:
+        for relevance in self.relevances[publisher]:
             i+=1
             cg += relevance
         return cg/i
 
     def get_relevance(self, item_id, ordered_click_list, times_clicked):
-        return 1/math.log(times_clicked)
+        return 1/math.log(times_clicked+1)
         # return ordered_click_list.index(item_id)+1 / len(ordered_click_list)
 
         # if(ordered_click_list.index(item_id)) < len(ordered_click_list)/8:
