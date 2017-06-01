@@ -41,6 +41,7 @@ class GenericRecommender(metaclass=ABCMeta):
         self.click_ranking = {'35774':{}, '1677':{}, '13554':{}, '418':{}, '694':{}, '3336':{}, '2522':{}}
         self.highest_newcomer = {'35774':'', '1677':'', '13554':'', '418':'', '694':'', '3336':'', '2522':''}
 
+        self.highest_risers = {'35774': [], '1677': [], '13554': [], '418': [], '694': [], '3336': [], '2522': []}
 
     def init_new_day(self):
         self.evaluation = Stats()
@@ -90,10 +91,23 @@ class GenericRecommender(metaclass=ABCMeta):
             #####
 
             ### HIGHEST RISER ###
+            max_change = 0
+            highest_riser = ''
+            riser_dict = {}
             for key in intersect_keys:
                 place_prev = list(ordered_prev.keys()).index(key)
                 place_next = list(ordered_next.keys()).index(key)
+                pos_change = place_prev - place_next
+                riser_dict[key] = pos_change
+
+                if pos_change > max_change and place_next < len(list(ordered_next.keys()))/5:
+                    highest_riser = key
+                    max_change = pos_change
                 # print('diff',publisher, key,place_next,  place_prev-place_next)
+            riser_dict_ordered = OrderedDict(sorted(riser_dict.items(), key=lambda t: t[1], reverse=True))
+            self.highest_risers[publisher] = list(riser_dict_ordered.keys())[0:10]
+            #### END HIGHESTS RISERS ###
+
             for key in intersect_keys:
                 try:
                     if list(ordered_next.keys()).index(key)-list(ordered_current.keys()).index(key) < -5:
@@ -143,13 +157,15 @@ class GenericRecommender(metaclass=ABCMeta):
         raise NotImplementedError('users must define get_recommendation to use this base class')
 
 
-
     @abc.abstractmethod
     def run_ranker(self, nextevent):
         raise NotImplementedError('users must define run_ranker to use this base class')
 
     def add_score(self, nextevent):
-        self.add_click_ranking(nextevent)
+        try:
+            self.add_click_ranking(nextevent)
+        except:
+            pass
         if self.session_only:
             user_id = nextevent[self.user_id_idx]
             try:

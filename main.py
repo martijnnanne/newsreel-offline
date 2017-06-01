@@ -16,8 +16,8 @@ try:
 except:
     BASEDIR = '../Dataprocessing/CSV2/'
     session_only = True
-    maxdays = 10
-    mindays = 1
+    maxdays = 12
+    mindays = 11
     cycle_time = 48
 
 s = datetime.now().strftime('%Y-%m-%d:%H:%M:%S')
@@ -34,6 +34,8 @@ from recommenders.mpc_session_event_only import MPCEventSession
 from recommenders.keyword_recommender import KeywordRecommender
 from recommenders.hybrid_rec import HybridRec
 from recommenders.poprank_event import PopRankEvent
+from recommenders.epsilon_greedy import EpsilonGreedyPopEvent
+from recommenders.high_risers_hybrid import HighRisersHybrid
 
 coocrank = CooccurRank(BASEDIR)
 poprank = PopRank(BASEDIR)
@@ -47,6 +49,8 @@ mpcevent = MPCEvent(BASEDIR,cycle_time=cycle_time)
 mpcviews = MPCviews(BASEDIR)
 keywordrec = KeywordRecommender(BASEDIR)
 most_popular_topic_rec = HybridRec(BASEDIR)
+eps_greedy = EpsilonGreedyPopEvent(BASEDIR, flushing=True, flush_cycle=1)
+high_riser_hybrid = HighRisersHybrid(BASEDIR, flushing=True, flush_cycle=True)
 
 
 popevent_1 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=1)
@@ -61,7 +65,7 @@ popevent_32 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=32)
 
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [coocrank, popevent, poprank , seqrank, contentrank, coocsessionrank, mpcsessionrank, mpceventsessionrank, mpcevent, mpcviews, keywordrec, most_popular_topic_rec]
+rankers = [coocrank,eps_greedy]
 
 
 
