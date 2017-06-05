@@ -65,7 +65,7 @@ popevent_32 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=32)
 
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [coocrank, poprank,popevent, seqrank, contentrank, coocsessionrank, mpcsessionrank, mpceventsessionrank, mpcevent, mpcviews, keywordrec, most_popular_topic_rec]
+rankers = []
 
 
 
