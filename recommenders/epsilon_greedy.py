@@ -136,7 +136,7 @@ class EpsilonGreedyPopEvent(GenericRecommender):
             if(command == 'event'):
                 self.total_events += 1
                 nextevent = self.event_csv.readline().split('\t')
-                self.add_score(nextevent)
+                result = self.add_score(nextevent)
                 self.add_timestamp(nextevent)
                 self.store_view(nextevent, self.true_rec(nextevent))
                 nexttime = int(nextevent[-2])

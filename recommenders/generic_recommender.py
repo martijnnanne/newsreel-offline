@@ -14,7 +14,8 @@ import numpy as np
 
 
 class GenericRecommender(metaclass=ABCMeta):
-    def __init__(self, BASEDIR, session_only = False, cycle_time=1):
+    def __init__(self, BASEDIR, session_only = False, cycle_time=1, only_clicked=True):
+        self.only_clicked = only_clicked
         self.BASEDIR = BASEDIR
         self.session_only = session_only
         self.evaluation = Stats()
@@ -174,6 +175,7 @@ class GenericRecommender(metaclass=ABCMeta):
                         true_rec = self.true_rec(nextevent)
                         if true_rec in self.get_recommendation(nextevent):
                             self.evaluation.add_correct_site(publisher, true_rec, self.get_ordered_click_list(publisher), self.get_amount_clicked(publisher,true_rec))
+                            return True
                         else:
                             self.evaluation.add_incorrect_site(publisher, true_rec)
                     except:
