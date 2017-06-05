@@ -6,9 +6,11 @@ from recommenders.generic_recommender import GenericRecommender, Stats
 
 class MPCEventSession(GenericRecommender):
 
-    def __init__(self, BASEDIR):
+    def __init__(self, BASEDIR, decay=0.5):
         super().__init__(BASEDIR)
-        self.name = 'session_mpc_event'
+
+        self.name = 'session_mpc_event_%s' % decay
+        self.decay = decay
 
         mapper = Mapping()
         self.rec_mapping = mapper.get_header_rec()
@@ -77,7 +79,7 @@ class MPCEventSession(GenericRecommender):
                 for key in item_dict:
                     item_dict[key] *= weight
                 count_dict = count_dict + item_dict
-                weight = weight / 2
+                weight = weight * self.decay
             ordered = OrderedDict(sorted(count_dict.items(),key=lambda t: t[1], reverse=True))
             sorted_item_list = list(ordered.keys())
         except KeyError:

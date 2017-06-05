@@ -61,11 +61,16 @@ popevent_16 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=16)
 popevent_24 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=24)
 popevent_32 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=32)
 
+mpceventsessionrank_1 = MPCEventSession(BASEDIR, 1)
+mpceventsessionrank_2 = MPCEventSession(BASEDIR, 0.8)
+mpceventsessionrank_3 = MPCEventSession(BASEDIR, 0.6)
+mpceventsessionrank_4 = MPCEventSession(BASEDIR, 0.5)
+mpceventsessionrank_5 = MPCEventSession(BASEDIR, 0.3)
 
 
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = []
+rankers = [mpceventsessionrank_1, mpceventsessionrank_2, mpceventsessionrank_3, mpceventsessionrank_4, mpceventsessionrank_5]
 
 
 
