@@ -16,7 +16,7 @@ class HighRisersHybrid(GenericRecommender):
         super().__init__(BASEDIR)
         self.flushing = flushing
         self.flush_cycle = flush_cycle
-        self.name = "high_risers_hybrdi"
+        self.name = "high_risers_hybrid"
 
         mapper = Mapping()
         self.rec_mapping = mapper.get_header_rec()
