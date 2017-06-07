@@ -1,6 +1,7 @@
 import json
 import random
 from collections import OrderedDict, Counter
+from datetime import datetime
 
 from mapping import Mapping
 from recommenders.generic_recommender import GenericRecommender, Stats
@@ -195,6 +196,14 @@ class PopPophybrid(GenericRecommender):
                     self.store_event(nextevent)
                 elif not self.only_clicked:
                     self.store_event(nextevent)
+                nexttime = int(nextevent[-2])
+                nexttime = datetime.fromtimestamp(int(nexttime) / 1000).hour
+                if self.time_hour is not nexttime:
+                    self.times_changed_hour += 1
+                    if self.times_changed_hour % 1 == 0:
+                        # self.popdict = {}
+                        self.off.flush_popdict()
+                        self.time_hour = nexttime
 
             self.nrrows += 1
             if (self.nrrows % 100000 == 0):

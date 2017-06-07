@@ -25,7 +25,7 @@ rfile = open('results/cycle_%s_results_%s.csv' % ( cycle_time,s), 'wt')
 results_csv = csv.writer(rfile)
 
 from recommenders.cooccur_based_ranker import CooccurRank
-from recommenders.popular_based_recommender import PopRank
+from recommenders.popular_based_recommender import PopRank, PopRankViews
 from recommenders.sequence_based_recommender import SeqRank
 from recommenders.content_based_recommender import ContentRank
 from recommenders.cooc_session_recommender import CoocSessionRank
@@ -40,6 +40,7 @@ from recommenders.explore_hybrid import *
 
 coocrank = CooccurRank(BASEDIR)
 poprank = PopRank(BASEDIR)
+poprankviews = PopRankViews(BASEDIR)
 popevent = PopRankEvent(BASEDIR)
 seqrank = SeqRank(BASEDIR)
 contentrank = ContentRank(BASEDIR)
@@ -77,7 +78,7 @@ mpceventsessionrank_5 = MPCEventSession(BASEDIR, 0.3)
 
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [popevent_mpcall_hybrid, popevent_pop_hybrid, popevent_key_hybrid ]
+rankers = [ poprankviews, poprank, popevent]
 
 
 
