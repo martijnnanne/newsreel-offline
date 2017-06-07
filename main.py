@@ -59,6 +59,8 @@ popevent_mpcall_hybrid = PopMpcAll(BASEDIR)
 popevent_key_hybrid = PopKeyHybrid(BASEDIR)
 popevent_pop_hybrid = PopPophybrid(BASEDIR)
 
+mpcevent_clicked_only = MPCSOLO(BASEDIR)
+poprank_clicked_only = POPSOLO(BASEDIR)
 
 
 popevent_1 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=1)
@@ -78,7 +80,7 @@ mpceventsessionrank_5 = MPCEventSession(BASEDIR, 0.3)
 
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [ poprankviews, poprank, popevent]
+rankers = [mpcevent_clicked_only, poprank_clicked_only]
 
 
 
