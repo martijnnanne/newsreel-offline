@@ -188,8 +188,10 @@ class GenericRecommender(metaclass=ABCMeta):
             true_rec = self.true_rec(nextevent)
             if true_rec in self.get_recommendation(nextevent):
                 self.evaluation.add_correct_site(publisher,true_rec, self.get_ordered_click_list(publisher), self.get_amount_clicked(publisher,true_rec))
+                return True
             else:
                 self.evaluation.add_incorrect_site(publisher, true_rec)
+                return False
             # except Exception:
             #     print(Exception)
 

@@ -168,6 +168,7 @@ class PopPophybrid(GenericRecommender):
         sorted_item_list = []
 
         if len(recs_main) < 6:
+            # print(recs_main)
             return recs_mpcevent
 
         for i in range(0,6):
@@ -503,7 +504,7 @@ class POPSOLO(GenericRecommender):
 
 
     def store_event(self, nextevent):
-        self.poprank.store_event(nextevent)
+        self.poprank.store_view(nextevent, self.true_rec(nextevent))
 
 
     def get_recommendation(self, nextevent):

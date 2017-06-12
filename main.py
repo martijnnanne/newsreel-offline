@@ -80,7 +80,7 @@ mpceventsessionrank_5 = MPCEventSession(BASEDIR, 0.3)
 
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [mpcevent_clicked_only, poprank_clicked_only]
+rankers = [poprank_clicked_only, mpcevent_clicked_only, popevent_pop_hybrid,popevent_key_hybrid, popevent_mpcall_hybrid]
 
 
 
