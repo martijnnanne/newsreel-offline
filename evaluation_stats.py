@@ -64,7 +64,7 @@ class Stats():
         return cg/i
 
     def get_relevance(self, item_id, ordered_click_list, times_clicked):
-        return 1/times_clicked
+        return 1/math.sqrt(times_clicked)
         # return ordered_click_list.index(item_id)+1 / len(ordered_click_list)
 
         # if(ordered_click_list.index(item_id)) < len(ordered_click_list)/8:

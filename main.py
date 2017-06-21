@@ -16,7 +16,7 @@ try:
 except:
     BASEDIR = '../Dataprocessing/CSV2/'
     session_only = True
-    maxdays = 2
+    maxdays = 3
     mindays = 1
     cycle_time = 48
 
@@ -80,7 +80,7 @@ mpceventsessionrank_5 = MPCEventSession(BASEDIR, 0.3)
 
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [poprank_clicked_only, mpcevent_clicked_only, popevent_pop_hybrid,popevent_key_hybrid, popevent_mpcall_hybrid]
+rankers = [coocrank, poprank, poprankviews, popevent, seqrank, contentrank, coocsessionrank, mpcsessionrank, mpceventsessionrank, mpcevent, mpcviews, keywordrec, most_popular_topic_rec]
 
 
 
