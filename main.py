@@ -71,16 +71,18 @@ popevent_16 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=16)
 popevent_24 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=24)
 popevent_32 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=32)
 
-mpceventsessionrank_1 = MPCEventSession(BASEDIR, 1)
-mpceventsessionrank_2 = MPCEventSession(BASEDIR, 0.8)
-mpceventsessionrank_3 = MPCEventSession(BASEDIR, 0.6)
-mpceventsessionrank_4 = MPCEventSession(BASEDIR, 0.5)
-mpceventsessionrank_5 = MPCEventSession(BASEDIR, 0.3)
-
+# mpceventsessionrank_1 = MPCEventSession(BASEDIR, 1)
+# mpceventsessionrank_2 = MPCEventSession(BASEDIR, 0.8)
+# mpceventsessionrank_3 = MPCEventSession(BASEDIR, 0.6)
+# mpceventsessionrank_4 = MPCEventSession(BASEDIR, 0.5)
+# mpceventsessionrank_5 = MPCEventSession(BASEDIR, 0.3)
+mpceventsessionrank_6 = MPCEventSession(BASEDIR, 0.2)
+mpceventsessionrank_7 = MPCEventSession(BASEDIR, 0.1)
+mpceventsessionrank_8 = MPCEventSession(BASEDIR, 0.0)
 
 
 # rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [coocrank, poprank, poprankviews, popevent, seqrank, contentrank, coocsessionrank, mpcsessionrank, mpceventsessionrank, mpcevent, mpcviews, keywordrec, most_popular_topic_rec]
+rankers = [mpceventsessionrank_6, mpceventsessionrank_7,mpceventsessionrank_8]
 
 
 

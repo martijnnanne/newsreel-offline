@@ -79,7 +79,7 @@ class MPCEventSession(GenericRecommender):
                 for key in item_dict:
                     item_dict[key] *= weight
                 count_dict = count_dict + item_dict
-                weight = weight * self.decay
+                weight *= self.decay
             ordered = OrderedDict(sorted(count_dict.items(),key=lambda t: t[1], reverse=True))
             sorted_item_list = list(ordered.keys())
         except KeyError:
