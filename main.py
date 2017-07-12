@@ -7,6 +7,12 @@ from sys import argv
 from recommenders.mpc_event_only import MPCEvent
 from recommenders.mpc_views import MPCviews
 
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("BASEDIR", help="Directory with the parsed data directories in it")
+args = parser.parse_args()
+print(args.echo)
+
 try:
     BASEDIR = argv[1] # scratch-striped]
     cycle_time = argv[2]
@@ -32,35 +38,32 @@ from recommenders.cooc_session_recommender import CoocSessionRank
 from recommenders.mpc_session_recommender import SessionSeqRank
 from recommenders.mpc_session_event_only import MPCEventSession
 from recommenders.keyword_recommender import KeywordRecommender
-from recommenders.hybrid_rec import HybridRec
-from recommenders.poprank_event import PopRankEvent
+from recommenders.most_popular_topic import MostPopularTopic
+from recommenders.most_clicked import PopRankEvent
 from recommenders.epsilon_greedy import EpsilonGreedyPopEvent
-from recommenders.high_risers_hybrid import HighRisersHybrid
 from recommenders.explore_hybrid import *
 
 coocrank = CooccurRank(BASEDIR)
-poprank = PopRank(BASEDIR)
+poprec = PopRank(BASEDIR)
 poprankviews = PopRankViews(BASEDIR)
-popevent = PopRankEvent(BASEDIR)
-seqrank = SeqRank(BASEDIR)
-contentrank = ContentRank(BASEDIR)
+most_clicked = PopRankEvent(BASEDIR)
+mpseq = SeqRank(BASEDIR)
+stemrec = ContentRank(BASEDIR)
 coocsessionrank = CoocSessionRank(BASEDIR)
-mpcsessionrank = SessionSeqRank(BASEDIR)
-mpceventsessionrank = MPCEventSession(BASEDIR)
-mpcevent = MPCEvent(BASEDIR,cycle_time=cycle_time)
-mpcviews = MPCviews(BASEDIR)
+mpseqsessionrank = SessionSeqRank(BASEDIR)
+mpseqeventsessionrank = MPCEventSession(BASEDIR)
+mpseqevent = MPCEvent(BASEDIR)
+mpseqviews = MPCviews(BASEDIR)
 keywordrec = KeywordRecommender(BASEDIR)
-most_popular_topic_rec = HybridRec(BASEDIR)
+most_popular_topic_rec = MostPopularTopic(BASEDIR)
 eps_greedy = EpsilonGreedyPopEvent(BASEDIR, flushing=True, flush_cycle=1)
-high_riser_hybrid = HighRisersHybrid(BASEDIR, flushing=True, flush_cycle=True)
 
-# popevent_mpcevent_hybrid = PopMpcHybrid(BASEDIR)
-popevent_mpcall_hybrid = PopMpcAll(BASEDIR)
+popevent_mpseqall_hybrid = PopMpcAll(BASEDIR)
 popevent_key_hybrid = PopKeyHybrid(BASEDIR)
 popevent_pop_hybrid = PopPophybrid(BASEDIR)
 
-mpcevent_clicked_only = MPCSOLO(BASEDIR)
-poprank_clicked_only = POPSOLO(BASEDIR)
+mpseqevent_clicked_only = MPCSOLO(BASEDIR)
+poprec_clicked_only = POPSOLO(BASEDIR)
 
 
 popevent_1 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=1)
@@ -71,18 +74,25 @@ popevent_16 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=16)
 popevent_24 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=24)
 popevent_32 = PopRankEvent(BASEDIR, flushing=True, flush_cycle=32)
 
-# mpceventsessionrank_1 = MPCEventSession(BASEDIR, 1)
-# mpceventsessionrank_2 = MPCEventSession(BASEDIR, 0.8)
-# mpceventsessionrank_3 = MPCEventSession(BASEDIR, 0.6)
-# mpceventsessionrank_4 = MPCEventSession(BASEDIR, 0.5)
-# mpceventsessionrank_5 = MPCEventSession(BASEDIR, 0.3)
+mpceventsessionrank_1 = MPCEventSession(BASEDIR, 1)
+mpceventsessionrank_2 = MPCEventSession(BASEDIR, 0.8)
+mpceventsessionrank_3 = MPCEventSession(BASEDIR, 0.6)
+mpceventsessionrank_4 = MPCEventSession(BASEDIR, 0.5)
+mpceventsessionrank_5 = MPCEventSession(BASEDIR, 0.3)
 mpceventsessionrank_6 = MPCEventSession(BASEDIR, 0.2)
 mpceventsessionrank_7 = MPCEventSession(BASEDIR, 0.1)
 mpceventsessionrank_8 = MPCEventSession(BASEDIR, 0.0)
 
 
-# rankers = [coocrank, poprank, seqrank, contentrank]
-rankers = [mpceventsessionrank_6, mpceventsessionrank_7,mpceventsessionrank_8]
+##INSERT RANKERS HERE##
+
+#experiment 1
+rankers = [coocrank,poprec,most_clicked,mpseq,stemrec,mpseqevent,keywordrec,most_popular_topic_rec]
+
+#experiment 2
+#rankers = [mpseqsessionrank, mpseq, mpseqeventsessionrank, mpseqevent, coocrank, coocsessionrank]
+
+#etc..
 
 
 

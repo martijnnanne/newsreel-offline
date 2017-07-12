@@ -12,8 +12,8 @@ from datetime import datetime
 
 
 class PopRank(GenericRecommender):
-    def __init__(self, BASEDIR):
-        super().__init__(BASEDIR)
+    def __init__(self, BASEDIR, session_only = False, cycle_time=1):
+        super().__init__(BASEDIR,session_only , cycle_time)
         self.name = 'poprank'
 
         mapper = Mapping()

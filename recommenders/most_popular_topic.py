@@ -12,10 +12,10 @@ from recommenders.mpc_event_only import MPCEvent
 #
 
 
-class HybridRec(GenericRecommender):
+class MostPopularTopic(GenericRecommender):
 
-    def __init__(self, BASEDIR):
-        super().__init__(BASEDIR)
+    def __init__(self, BASEDIR,session_only = False, cycle_time=1):
+        super().__init__(BASEDIR,session_only, cycle_time)
         self.name = 'most_popular_topic'
 
         mapper = Mapping()

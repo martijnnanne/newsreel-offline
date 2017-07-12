@@ -12,8 +12,8 @@ from datetime import datetime
 
 
 class PopRankEvent(GenericRecommender):
-    def __init__(self, BASEDIR, flushing=False, flush_cycle=24):
-        super().__init__(BASEDIR)
+    def __init__(self, BASEDIR, flushing=False, flush_cycle=24, session_only = False, cycle_time=1):
+        super().__init__(BASEDIR, session_only, cycle_time)
         self.flushing = flushing
         self.flush_cycle = flush_cycle
         if flushing:

@@ -5,8 +5,8 @@ from recommenders.generic_recommender import GenericRecommender, Stats
 
 class SessionSeqRank(GenericRecommender):
 
-    def __init__(self, BASEDIR):
-        super().__init__(BASEDIR)
+    def __init__(self, BASEDIR,session_only = False, cycle_time=1):
+        super().__init__(BASEDIR, session_only , cycle_time)
         self.name = 'session_seqrank'
 
         mapper = Mapping()

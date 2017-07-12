@@ -14,7 +14,7 @@ import numpy as np
 
 
 class GenericRecommender(metaclass=ABCMeta):
-    def __init__(self, BASEDIR, session_only = False, cycle_time=1, only_clicked=True):
+    def __init__(self, BASEDIR, session_only = False, cycle_time=1, only_clicked=False):
         self.only_clicked = only_clicked
         self.BASEDIR = BASEDIR
         self.session_only = session_only
@@ -77,38 +77,10 @@ class GenericRecommender(metaclass=ABCMeta):
 
             currentstats.subtract(stats_prev)
             ordered_next = OrderedDict(sorted(stats_next.items(), key=lambda t: t[1], reverse=True))
-            ordered_prev = OrderedDict(sorted(stats_prev.items(), key=lambda t: t[1], reverse=True))
             ordered_current = OrderedDict(sorted(currentstats.items(), key=lambda t: t[1], reverse=True))
             intersect_keys = (stats_next & stats_prev).keys()
-            ## HIGHEST NEWCOMER ###
-            descect_keys = [x for x in stats_next.keys() if x not in intersect_keys]
-            max_index = 1000000
-            highest_newcomer = ''
-            for key in descect_keys:
-                if list(ordered_next.keys()).index(key) < max_index:
-                    highest_newcomer = key
-                    max_index = list(ordered_next.keys()).index(key)
-            self.highest_newcomer[publisher] = highest_newcomer
-            #####
 
-            ### HIGHEST RISER ###
-            max_change = 0
-            highest_riser = ''
-            riser_dict = {}
-            for key in intersect_keys:
-                place_prev = list(ordered_prev.keys()).index(key)
-                place_next = list(ordered_next.keys()).index(key)
-                pos_change = place_prev - place_next
-                riser_dict[key] = pos_change
-
-                if pos_change > max_change and place_next < len(list(ordered_next.keys()))/5:
-                    highest_riser = key
-                    max_change = pos_change
-                # print('diff',publisher, key,place_next,  place_prev-place_next)
-            riser_dict_ordered = OrderedDict(sorted(riser_dict.items(), key=lambda t: t[1], reverse=True))
-            self.highest_risers[publisher] = list(riser_dict_ordered.keys())[0:10]
-            #### END HIGHESTS RISERS ###
-
+            # REMOVE ALL BUT TOP 250 ITEMS
             for key in intersect_keys:
                 try:
                     if list(ordered_next.keys()).index(key)-list(ordered_current.keys()).index(key) < -5:

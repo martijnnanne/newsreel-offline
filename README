@@ -1,0 +1,12 @@
+- recommenders/ contains all recommenders
+- all recommenders are derived from generic recommender
+- evaluation_stats are the functions to evaluate the results and are stored in the results file
+- mpc = mpseq
+
+- in main.py, rankers = [..] have to contain a set of generic recommenders that will be evaluated on the data
+- BASEDIR should contain directories with all directories with the output from the dataprocessing.py script
+- cycle time is optional for a couple of algorithms
+- mpc is mpseq in the paper
+
+- Fill in the rankers in main.py and run the algorithm
+- Run the script and evaluate the results in fancy_graphs.ipynb

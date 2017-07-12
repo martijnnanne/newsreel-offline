@@ -6,8 +6,8 @@ from recommenders.generic_recommender import GenericRecommender, Stats
 
 class MPCEventSession(GenericRecommender):
 
-    def __init__(self, BASEDIR, decay=0.5):
-        super().__init__(BASEDIR)
+    def __init__(self, BASEDIR, decay=0.5, session_only = False, cycle_time=1):
+        super().__init__(BASEDIR, session_only, cycle_time)
 
         self.name = 'session_mpc_event_%s' % decay
         self.decay = decay

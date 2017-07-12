@@ -12,18 +12,22 @@ from recommenders.generic_recommender import GenericRecommender, Stats
 from recommenders.keyword_recommender import KeywordRecommender
 from recommenders.mpc_session_event_only import MPCEventSession
 from recommenders.mpc_session_recommender import SessionSeqRank
-from recommenders.poprank_event import PopRankEvent
+from recommenders.most_clicked import PopRankEvent
 from recommenders.popular_based_recommender import PopRank
 
 # keep dictionary per domain of items:views
 # if item does not exist, add to the dictionary
 #
 
+###
+# Collection of hybrid explore/exploit recommenders found in the papers
+
+###
 
 class PopMpcHybrid(GenericRecommender):
 
-    def __init__(self, BASEDIR, only_clicked=False):
-        super().__init__(BASEDIR)
+    def __init__(self, BASEDIR, only_clicked=False , session_only = False, cycle_time=1):
+        super().__init__(BASEDIR, session_only = False, cycle_time=1, only_clicked=True)
         self.name = 'popevent_mpcexplore'
 
         mapper = Mapping()
@@ -115,7 +119,7 @@ class PopMpcHybrid(GenericRecommender):
 class PopPophybrid(GenericRecommender):
 
     def __init__(self, BASEDIR):
-        super().__init__(BASEDIR)
+        super().__init__(BASEDIR,  only_clicked=True)
         self.name = 'popevent_popularityexplore'
 
         mapper = Mapping()
@@ -215,7 +219,7 @@ class PopPophybrid(GenericRecommender):
 class PopKeyHybrid(GenericRecommender):
 
     def __init__(self, BASEDIR):
-        super().__init__(BASEDIR)
+        super().__init__(BASEDIR,  only_clicked=True)
         self.name = 'popevent_keyword'
 
         mapper = Mapping()
@@ -305,7 +309,7 @@ class PopKeyHybrid(GenericRecommender):
 class PopMpcAll(GenericRecommender):
 
     def __init__(self, BASEDIR):
-        super().__init__(BASEDIR)
+        super().__init__(BASEDIR,  only_clicked=True)
         self.name = 'popevent_mpcsessionall'
 
         mapper = Mapping()
@@ -398,7 +402,7 @@ class PopMpcAll(GenericRecommender):
 class MPCSOLO(GenericRecommender):
 
     def __init__(self, BASEDIR):
-        super().__init__(BASEDIR)
+        super().__init__(BASEDIR,  only_clicked=True)
         self.name = 'mpc click only'
 
         mapper = Mapping()
@@ -469,7 +473,7 @@ class MPCSOLO(GenericRecommender):
 class POPSOLO(GenericRecommender):
 
     def __init__(self, BASEDIR):
-        super().__init__(BASEDIR)
+        super().__init__(BASEDIR,  only_clicked=True)
         self.name = 'pop click only'
 
         mapper = Mapping()
