@@ -197,11 +197,11 @@ class GenericRecommender(metaclass=ABCMeta):
         return user_items
 
     def logging(self):
-        print(self.nrrows)
+        print('number rows progress' , self.nrrows)
         try:
             print('precision', self.evaluation.total_correct_all / self.evaluation.total_count_all)
             print('recall', len(self.evaluation.sites_correct)/len(self.evaluation.total_sites))
-            print('cg', self.evaluation.CG('35774'))
-            print('avg gain', self.evaluation.avgCG('35774'))
+            print('cumalative gain tagesspiegel', self.evaluation.CG('35774'))
+            print('avg gain tagesspiegel', self.evaluation.avgCG('35774'))
         except:
             print("division by zero")

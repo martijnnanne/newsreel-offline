@@ -12,7 +12,7 @@ from recommenders.generic_recommender import GenericRecommender, Stats
 from recommenders.keyword_recommender import KeywordRecommender
 from recommenders.mpc_session_event_only import MPCEventSession
 from recommenders.mpc_session_recommender import SessionSeqRank
-from recommenders.most_clicked import PopRankEvent
+from recommenders.most_clicked import MostClicked
 from recommenders.popular_based_recommender import PopRank
 
 # keep dictionary per domain of items:views
@@ -39,7 +39,7 @@ class PopMpcHybrid(GenericRecommender):
         self.user_id_idx = self.event_mapping.index('USER_COOKIE')
         self.keyword_idx = self.rec_mapping.index('KEYWORD')
 
-        self.poprankevent = PopRankEvent(BASEDIR)
+        self.poprankevent = MostClicked(BASEDIR)
         self.mpc_event_session = MPCEventSession(BASEDIR)
 
         self.user_last_item_dict = {}
@@ -131,7 +131,7 @@ class PopPophybrid(GenericRecommender):
         self.user_id_idx = self.event_mapping.index('USER_COOKIE')
         self.keyword_idx = self.rec_mapping.index('KEYWORD')
 
-        self.main = PopRankEvent(BASEDIR)
+        self.main = MostClicked(BASEDIR)
         self.off = PopRank(BASEDIR)
 
         self.user_last_item_dict = {}
@@ -231,7 +231,7 @@ class PopKeyHybrid(GenericRecommender):
         self.user_id_idx = self.event_mapping.index('USER_COOKIE')
         self.keyword_idx = self.rec_mapping.index('KEYWORD')
 
-        self.main = PopRankEvent(BASEDIR)
+        self.main = MostClicked(BASEDIR)
         self.off = KeywordRecommender(BASEDIR)
 
         self.user_last_item_dict = {}
@@ -321,7 +321,7 @@ class PopMpcAll(GenericRecommender):
         self.user_id_idx = self.event_mapping.index('USER_COOKIE')
         self.keyword_idx = self.rec_mapping.index('KEYWORD')
 
-        self.main = PopRankEvent(BASEDIR)
+        self.main = MostClicked(BASEDIR)
         self.off = SessionSeqRank(BASEDIR)
 
         self.user_last_item_dict = {}

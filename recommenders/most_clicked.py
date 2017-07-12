@@ -10,8 +10,8 @@ from datetime import datetime
 # if item does not exist, add to the dictionary
 #
 
-
-class PopRankEvent(GenericRecommender):
+# MOST CLICKED CLASS
+class MostClicked(GenericRecommender):
     def __init__(self, BASEDIR, flushing=False, flush_cycle=24, session_only = False, cycle_time=1):
         super().__init__(BASEDIR, session_only, cycle_time)
         self.flushing = flushing
