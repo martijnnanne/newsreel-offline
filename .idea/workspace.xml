@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7cc59be1-8f6e-443a-a5f1-6d347a6350f7" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bridge_table.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/main.py.save" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/first_test.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/part1_test1_results" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/part2_test1_results" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/part2_test2" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fancy_graphs.ipynb" afterPath="$PROJECT_DIR$/Fancy_graphs.ipynb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README" afterPath="$PROJECT_DIR$/README" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/recommenders/explore_hybrid.py" afterPath="$PROJECT_DIR$/recommenders/explore_hybrid.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/recommenders/generic_recommender.py" afterPath="$PROJECT_DIR$/recommenders/generic_recommender.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/recommenders/most_clicked.py" afterPath="$PROJECT_DIR$/recommenders/most_clicked.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/recommenders/popular_based_recommender.py" afterPath="$PROJECT_DIR$/recommenders/popular_based_recommender.py" />
     </list>
     <ignored path="newsreel-offline.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,17 +22,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="README" pinned="false" current-in-tab="false">
+      <file leaf-file-name="README" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="133" selection-start-line="5" selection-start-column="133" selection-end-line="5" selection-end-column="133" />
+            <state relative-caret-position="105">
+              <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-782">
@@ -126,9 +113,9 @@
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/recommenders/generic_recommender.py" />
         <option value="$PROJECT_DIR$/Fancy_graphs.ipynb" />
-        <option value="$PROJECT_DIR$/README" />
         <option value="$PROJECT_DIR$/recommenders/popular_based_recommender.py" />
         <option value="$PROJECT_DIR$/recommenders/most_clicked.py" />
+        <option value="$PROJECT_DIR$/README" />
       </list>
     </option>
   </component>
@@ -801,14 +788,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="133" selection-start-line="5" selection-start-column="133" selection-end-line="5" selection-end-column="133" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/recommenders/popular_based_recommender.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2346">
@@ -832,6 +811,14 @@
           <folding>
             <element signature="e#1#11#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>

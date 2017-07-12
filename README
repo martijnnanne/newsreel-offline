@@ -1,8 +1,11 @@
+CODE MASTER THESIS MARTIJN NANNE: AN OFFLINE ANALYSIS OF THE CLEF-NEWSREEL EVALUATION
+
+
 - recommenders/ contains all recommenders
 - all recommenders are derived from generic recommender
-- in order to make new recommender systems I suggest to extend generic recommender
+- in order to make new recommender systems I suggest to extend generic recommender and implement the necessary methods
 - evaluation_stats are the functions to evaluate the results and are stored in the results file
-- mpc = mpseq
+- mpc = mpseq in the thesis
 - statistics notebook has been used to determine general statistics about the data (shown in our data analysis section in the thesis)
 
 - in main.py, rankers = [..] have to contain a set of generic recommenders that will be evaluated on the data
